@@ -1,0 +1,44 @@
+UBUNTU LINUX SERVER 
+
+Credentials
+u: proselpharma
+p: Server_2018@ 
+
+-----
+
+How to Operate the Web Server in this server:
+
+1. Open terminal
+
+2. Paste the following code:
+sudo /opt/lampp/lampp start
+
+Please refer to:
+https://phptechnologytutorials.wordpress.com/2013/04/27/operate-xampp-in-ubuntu-using-command-line/
+
+How to change folder permissions
+https://www.computernetworkingnotes.com/ubuntu-linux-tutorials/how-to-fix-permission-of-htdocs-folder-in-ubuntu-linux.html
+
+
+
+Once the LAMPP Server is working, extract the prosel_timekeeping.rar and paste the web files (solera_timekeeping folder) on /opt/xampp htdocs folder
+
+Set the DB Connection 
+Go to prosel_timekeeping/Web/classes/database.php and replace the following values of variables. Please refer to the details below:
+
+  private $host = "localhost";
+  private $db_name = "prosel";
+  private $username = "root";
+  private $password = ""; 
+
+
+Configure the Database:
+Open browser
+Type in the address: localhost/phpmyadmin
+On the PHPMyAdmin, Click on the Import then press browse button. Look for the prosel.sql file then press GO
+
+If the db is existing, delete the DB because it is not updated.
+
+Test the Web Application
+Open browser
+Type in the address: localhost/solera-timekeeping. You should be able to access the web application.

@@ -1,0 +1,61 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Doctor</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            
+            <li class="active">
+                <strong>Doctors</strong>
+            </li>
+        </ol>
+    </div>
+    
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+
+<div class="row">
+    
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title" ng-if="main.userType == 'Administrator'">
+                <button ng-click="addRecord()">Add a New Doctor</button>
+            </div>
+            <div class="ibox-content">
+
+                <table class="table table-hover" data-ng-init="displayDoctors()">
+                    <thead>
+                        <tr>
+                            <th>DOCTOR NAME</th>
+                            <th>SPECIALIZATION</th>
+                            <th>ADDRESS 1</th>
+                            <th>ADDRESS 2</th>
+                            <th>FREQUENCY</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr ng-repeat="doctor in doctors">
+                            <td>{{doctor.FIRST_NAME}} {{doctor.MIDDLE_INITIAL}} {{doctor.LAST_NAME}}</td>
+                            <td>{{doctor.DOCTOR_SPECIALTY_ID}}</td>
+                            <td>{{doctor.ADDRESS1}}</td>
+                            <td>{{doctor.ADDRESS2}}</td>
+                            <td>{{doctor.FREQUENCY}}</td>
+                                
+                            <td ng-if="main.userType == 'Administrator'">
+                                <button ng-click="editRecord(doctor.DOCTOR_ID);">Edit Record</button>
+                            </td>
+
+                            <td ng-if="main.userType != 'Administrator'">
+                                <button ng-click="displayDetails(doctor.DOCTOR_ID);">View Details</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

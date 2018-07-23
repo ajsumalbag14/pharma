@@ -1,0 +1,168 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Doctor Visit</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a>Area Manager</a>
+            </li>
+            <li class="active">
+                <strong>Doctor Visit</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <!--<span class="text-muted small pull-right">Last modification: <i class="fa fa-clock-o"></i> 2:10 pm - 12.06.2014</span>-->
+            
+                    <h3>Displaying Doctors Visit List for Area Manager: {{fullName}}</h3>
+                    <p>Click on the <span class="fa fa-search"></span> icon to display details</p>
+
+                    
+                    <div class="hr-line-dashed"></div>
+
+                    <div class="full-height-scroll">
+                        <table class="table table-striped table-hover" ng-init="displayDoctorsVisitPerUser()">
+                            <thead>
+                                <tr>
+                                <th>DOCTOR NAME</th>
+                                <th>&nbsp;</th>
+                                <th>DATE TIME</th>
+                                <th>&nbsp;</th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="record in doctorsVisit">
+                                    
+                                    <td>{{record.DOCTOR_NAME}}</td>
+                                    <td><i class="fa fa-clock-o"> </i> </td>
+                                    <td>{{record.VISIT_DATETIME}}</td>              
+                                    
+                                    <td><a class="fa fa-search" ng-click="displayDoctorVisitDetails(record.DOCTOR_VISIT_ID, record.DOCTOR_ID)"></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--<button class="btn btn-white" type="button" ng-click="backToAMSummary()">Back to Area Manager List</button>-->
+                        <button class="btn btn-white" type="button" ng-click="backToAMSummary()">Back to Area Manager List</button>
+                        <button class="btn btn-white" type="button" ng-click="backToAMDetails()">Back to Area Manager Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="ibox ">
+
+                <div class="ibox-content">
+                    
+                        <div>
+                            <div class="row m-b-lg">
+                                <div class="col-lg-6 text-center">
+                                    <h2>Doctor Visit ID</h2>
+                                    <h2>{{doctorVisitID}}</h2>    
+                                </div>
+                                <div class="col-lg-6">
+                                    <h2>Visit Date Time</h2>
+                                    <h2>{{visitDatetime}}</h2>
+                                </div>
+                            </div>
+                                <div class="row full-height-scroll" full-scroll>
+                                    <div class="col-lg-8">
+                                        <strong>Doctor Details</strong>
+                                        <ul class="list-group clear-list">
+                                            <li class="list-group-item fist-item">
+                                                <span class="pull-right">{{doctorFullName}} </span>
+                                                Full Name
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="pull-right"> {{doctorSpecialtyID}} </span>
+                                                Specialization
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="pull-right"> {{address1}} </span>
+                                                Address 1
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="pull-right"> {{address2}} </span>
+                                                Address 2
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-4 text-center">
+                                        Available Balance
+                                        <h2>{{balance}}</h2>
+                                        <p>Valid until: <br />
+                                            <span style="font-style:italic">{{balanceExpirationDate}}</span>
+                                        </p>
+                                    </div>
+                                    <!--GOOGLE MAPS BEGIN-->
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h5>Visit Details</h5>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div id = "mapAM" style="width: 100%;height: 400px;"></div>
+                                        </div>
+                                    </div>
+                                    <!--GOOGLE MAPS END-->
+                                     <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h5>Signature</h5>
+                                        </div>
+                                        <img src="data:image/png;base64,{{doctorSignature}}" style="width:100%; height: 100%" />
+                                    </div>
+
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h5>Remarks</h5>
+                                        </div>
+                                        <div class="ibox-title">
+                                            <p>{{remarks}}<p>
+                                        </div>
+                                    </div>
+                                    
+                                     <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h5>Purchased Products</h5>
+                                        </div>
+                                        <div class="ibox-title">
+                                            <table class="table table-striped table-hover" ng-init="displayDoctorsVisitPerUser()">
+                                                <thead>
+                                                    <tr>
+                                                    <th>PRODUCT CODE</th>
+                                                    <th>QTY REGULAR</th>
+                                                    <th>QTY FREE</th>
+                                                    <th>PRICE </th>
+                                                    <th>DISCOUNT</th>
+                                                    <th>NET PRICE</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="record in doctorPurchase">
+                                                        <td>{{record.PRODUCT_CODE}}</td>
+                                                        <td>{{record.QTY_REGULAR}}</td>
+                                                        <td>{{record.QTY_FREE}}</td>
+                                                        <td>{{record.PRICE}}</td>
+                                                        <td>{{record.DISCOUNT}}</td>
+                                                        <td>{{record.NET_PRICE}}</td>  
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="pull-right">
+                                                <h2>Total Net Price: {{totalNetPrice}}</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

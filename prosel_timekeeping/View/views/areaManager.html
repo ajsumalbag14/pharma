@@ -1,0 +1,72 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Area Manager</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            
+            <li class="active">
+                <strong>Area Manager</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+
+<div class="row">
+    
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <!--put a check if admin ba to display this button-->
+                <!--<button ng-click="displayModal('add', null);">Add a New Doctor</button>-->
+                <h3>Displaying Assigned Area Managers for {{parentUserName}}</h3>
+                
+            </div>
+            <div class="ibox-content">
+
+                <table class="table table-hover" data-ng-init="displayAM()">
+                    <thead>
+                    <tr>
+                        
+                        <th>AREA MANAGER ID</th>
+                        <th>FIRST NAME</th>
+                        <th>MIDDLE NAME</th>
+                        <th>LAST NAME</th>
+                        <th>USERNAME</th>
+                        <th>AREA</th>
+                        <th>DATE CREATED</th>
+                        <th>STATUS</th>
+                    </thead>
+                    <tbody>
+
+                        <tr ng-repeat="record in AreaManagers">
+                            <td>{{record.USER_ID}}</td>
+                            <td>{{record.FIRST_NAME}}</td>
+                            <td>{{record.MIDDLE_NAME}}</td>
+                            <td>{{record.LAST_NAME}}</td>
+                            <td>{{record.USERNAME}}</td>
+                            <td>{{record.AREA_NAME}}</td>
+                            <td>{{record.DATE_CREATED}}</td>
+                            <td>
+                                <span class="label label-{{record.STATUS == '1' ? 'primary' : 'danger' }}">{{record.STATUS == '1' ? 'Enabled' : 'Disabled'}}</span>
+                            </td>
+
+                            
+                            <td><button ng-click="displayDetails(record.USER_ID);">View Details</button></td>
+                            <!--<td><button ng-click="deleteRecord(doctor.DOCTOR_ID);">DETAILS</button></td>-->
+                        </tr>
+
+                
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

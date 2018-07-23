@@ -1,0 +1,45 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+
+                <div class="profile-element" uib-dropdown>
+                    <a uib-dropdown-toggle href>
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <h3><strong class="font-bold">{{main.userName}}</strong></h3>
+                                    
+                             </span>
+                                {{main.userType}}
+                                <!--<span class="text-muted text-xs block">Menu<b class="caret"></b></span>-->
+                            </span>
+                    </a>
+                    <!--put edit profile in here
+                    <ul uib-dropdown-menu="" class="animated fadeInRight m-t-xs">
+                        <li><a href="">Logout</a></li>
+                    </ul>-->
+                </div>
+                <div class="logo-element">
+                    PR+
+                </div>
+            </li>
+        </ul>
+    <ul side-navigation class="nav metismenu" id="side-menu">
+        <li ui-sref-active="active">
+            <a ui-sref="index.main"><i class="fa fa-laptop"></i> <span class="nav-label">Home</span> </a>
+        </li>
+    </ul>
+
+    <ul side-navigation class="nav metismenu" id="side-menu" data-ng-init="loadModuleAccessPerUserType()">
+        <li ui-sref-active="active" ng-repeat="module in modules">
+                <a ui-sref="index.{{module.PAGE_URI}}"><i class="fa fa-laptop"></i> <span class="nav-label">{{module.MODULE_NAME}}</span> </a>
+            </li>
+    </ul>
+
+    <ul side-navigation class="nav metismenu" id="side-menu">
+        <li ui-sref-active="active">
+            <a ui-sref="logout"><i class="fa fa-lock"></i> <span class="nav-label">Logout</span> </a>
+        </li>
+    </ul>
+    </div>
+</nav>

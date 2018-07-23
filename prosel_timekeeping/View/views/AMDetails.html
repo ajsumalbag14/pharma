@@ -1,0 +1,99 @@
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>AREA MANAGER DETAILS</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a>Area Manager</a>
+            </li>
+            <li class="active">
+                <strong>Area Manager Details</strong>
+            </li>
+        </ol>
+    </div>
+    
+</div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row" data-ng-init="displayAMDetails()">
+        <div class="col-lg-8">
+            <div class="ibox float-e-margins">
+                
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group"><label class="col-sm-4 ">First Name</label>
+                            <div>{{firstName}}</div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group"><label class="col-sm-4">Middle Name</label>
+                            <div>{{middleName}}</div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group"><label class="col-sm-4">Last Name</label>
+                            <div>{{lastName}}</div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group"><label class="col-sm-4">User Type</label>
+                            <div>{{userType}}</div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group"><label class="col-sm-4">Username</label>
+                            <div>{{userName}}</div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group"><label class="col-sm-4">Area / Coverage</label>
+                            <div>{{areaName}}</div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group"><label class="col-sm-4">Date Created</label>
+                            <div>{{dateCreated}}</div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group"><label class="col-sm-4">Remarks</label>
+                            <div>{{remarks}}</div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group"><label class="col-sm-4">Status</label>
+                            <div>{{status}}</div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group"><label class="col-sm-4">Reporting To</label>
+                            <div>{{parentUserFullname}}</div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <button class="btn btn-white" type="button" ng-click="back()">Back to AM List</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4" data-ng-init="displayDoctorBalance()">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <h3>Actions</h3>
+                    <div class="hr-line-dashed"></div>
+                    <button class="btn btn-primary btn-block btn-lg" ng-click="displayAMActivity(userID, firstName, lastName)">View Area Manager Activity</button>
+                    <button class="btn btn-primary btn-block btn-lg" ng-click="displayDoctorsVisit(userID, firstName, lastName)">View Doctors Visit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

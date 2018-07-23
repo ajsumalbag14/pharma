@@ -1,0 +1,95 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Doctor</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            
+            <li class="active">
+                <strong>Doctors Visit</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="tabs-container">
+        <uib-tabset>
+            <uib-tab heading="Doctors Visit">
+                <div class="panel-body">
+                    <!--start-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <div ibox-tools></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <table class="table table-hover" data-ng-init="displayDoctorsVisitPerUser()">
+                                        <thead>
+                                        <tr>
+                                            <th>DOCTOR NAME</th>
+                                            <th>VISIT DATE TIME</th>
+                                            <th>REMARKS</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="record in doctorsVisit">
+                                                <td>{{record.DOCTOR_NAME}}</td>
+                                                <td>{{record.VISIT_DATETIME}}</td>
+                                                <td>{{record.REMARKS}}</td>
+                                                <td><button ng-click="displayModal('details', record.DOCTOR_VISIT_ID);">DETAILS</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end-->
+                </div>
+            </uib-tab>
+            <uib-tab heading="Area Manager Activity">
+                <div class="panel-body">
+                    <!--start-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <div ibox-tools></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <table class="table table-hover" data-ng-init="displayAMActivity()">
+                                        <thead>
+                                        <tr>
+                                            <th>AM ACTIVITY ID</th>
+                                            <th>DATE TIME</th>
+                                            <th>TYPE</th>
+                                            <th>REMARKS</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="record in AMActivity">
+                                                <td>{{record.AREA_MANAGER_ACTIVITY_ID}}</td>
+                                                <td>{{record.ACTIVITY_DATETIME}}</td>
+                                                <td>{{record.ACTIVITY_TYPE}}</td>
+                                                <td>{{record.REMARKS}}</td>
+                                                <td><button ng-click="displayAMModal('details', record.AREA_MANAGER_ACTIVITY_ID);">DETAILS</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end-->
+                    
+                </div>
+            </uib-tab>
+        </uib-tabset>
+
+    </div>
+
+
+</div>

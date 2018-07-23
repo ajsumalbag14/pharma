@@ -1,0 +1,141 @@
+<div ng-controller="formValidation" >
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>ADD / EDIT USER RECORD</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a>Users</a>
+            </li>
+            <li class="active">
+                <strong>Add / Edit User Record</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+    <form role="form" name="signup_form" novalidate ng-submit="signupForm()">
+    
+    <div class="row" data-ng-init="displayUserDetails()">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">First Name</label>
+
+                            <div class="col-sm-10">
+                                
+                                <input type="text" placeholder="First Name" class="form-control" name="first_name" ng-model="users.first_name" required>
+                                <div class="m-t-xs" ng-show="signup_form.first_name.$invalid && signup_form.submitted">
+                                    <small class="text-danger" ng-show="signup_form.first_name.$error.required">Required field. Please input a value in this field</small>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Middle Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" placeholder="Middle Name" id="middle_name" ng-model="users.middle_name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Last Name</label>
+                            <div class="col-sm-10">
+                                
+                                <input type="text" placeholder="Last Name" class="form-control" id="last_name" ng-model="users.last_name" required>
+                                <div class="m-t-xs" ng-show="signup_form.last_name.$invalid && signup_form.submitted">
+                                    <small class="text-danger" ng-show="signup_form.last_name.$error.required">Required field. Please input a value in this field</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">User Type</label>
+                            <div class="col-sm-10">
+                                <select data-ng-options="o.USER_TYPE for o in usersTypes" name="USER_TYPE" data-ng-model="usersTypes.selectedOption"></select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Username</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="USERNAME" placeholder="username" id="username" ng-model="users.username" class="form-control">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="password" placeholder="password" id="password" ng-model="users.password" class="form-control">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Area</label>
+                            <div class="col-sm-10">
+                                <select data-ng-options="o.AREA_NAME for o in area" name="area" data-ng-model="area.selectedOption"></select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Status</label>
+                            <div class="col-sm-10">
+                                 <label class="checkbox-inline"> 
+                                    <input icheck type="radio" value="1" ng-model="users.status" id="status" name="status"> Enabled
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input icheck type="radio" value="0" ng-model="users.status" id="status" name="status"> Disabled
+                                </label>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Remarks</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="remarks" placeholder="remarks" id="remarks" ng-model="users.remarks" class="form-control">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group" name="user">
+                            <label class="col-sm-2 control-label">Assigned To</label>
+                            <div class="col-sm-10">
+                                <select data-ng-options="o.FULL_NAME for o in users" name="USER_ID" data-ng-model="users.selectedOption"></select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 pull-right">
+
+                                <button class="btn btn-sm btn-primary" type="button" ng-click="modifyRecord()">Submit form</button>
+                                <button class="btn btn-white" type="button" ng-click="back()">Back to Users List</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+    </form>
+    </div>
+</div>
+</div>

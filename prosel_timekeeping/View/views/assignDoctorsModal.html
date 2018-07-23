@@ -1,0 +1,80 @@
+<div class="modal-body" data-ng-init="displayPopup(); populateFields()">
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Assign Doctors</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a>Assign Doctors</a>
+            </li>
+            <li class="active">
+                <strong></strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                
+                <div class="ibox-content">
+                    <form method="get" class="form-horizontal">
+
+                        <input type="hidden" ng-model="userID" id="userID" />
+                        <div class="form-group"><label class="col-sm-2 control-label">Search Doctor</label>
+
+                            <div class="col-sm-10"><input type="text" class="form-control"></div>
+                            <button class="btn btn-primary" ng-click="ok()" type="button">Save changes</button>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <!--TABLE DOCTORS BEGIN-->
+                         <table class="table table-hover" data-ng-init="displayDoctors()">
+                            <thead>
+                            <tr>
+                                
+                                <th>DOCTOR NAME</th>
+                                <th>SPECIALIZATION</th>
+                                <th>ADDRESS 1</th>
+                                <th>ADDRESS 2</th>
+                                <th>FREQUENCY</th>
+                                
+                            </thead>
+                            <tbody>
+
+                                <tr ng-repeat="doctor in doctors">
+                                    <td>{{doctor.FIRST_NAME}} {{doctor.MIDDLE_INITIAL}} {{doctor.LAST_NAME}}</td>
+                                    <td>{{doctor.DOCTOR_SPECIALTY_ID}}</td>
+                                    <td>{{doctor.ADDRESS1}}</td>
+                                    <td>{{doctor.ADDRESS2}}</td>
+                                    <td>{{doctor.FREQUENCY}}</td>
+                                    <td><button ng-click="deleteRecord(doctor.DOCTOR_ID);">DETAILS</button></td>
+                                </tr>
+
+                        
+                            </tbody>
+                        </table>
+                        <!--TABLE DOCTORS END-->
+                        
+                        <div class="hr-line-dashed"></div>
+                        
+                      
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-white" type="button" ng-click="cancel()">Cancel</button>
+                                <button class="btn btn-primary" ng-click="ok()" type="button">Save changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,60 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Doctors Visit</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            
+            <li class="active">
+                <strong>Doctors Visit</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+
+<div class="row">
+    
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <!--put a check if admin ba to display this button-->
+                <!--<button ng-click="displayModal('add', null);">Add a New Doctor</button>-->
+                <h3>Displaying Doctors Visit Details for Area Managers Under {{parentUserName}}</h3>
+                
+            </div>
+            <div class="ibox-content">
+
+                <table class="table table-hover" data-ng-init="displayDoctorsVisit()">
+                    <thead>
+                    <tr>
+                        <th>DOCTOR VISIT ID</th>
+                        <th>DOCTOR NAME</th>
+                        <th>VISIT DATETIME</th>
+                        <th>REMARKS</th>
+                        <th>&nbsp;</th>
+                    </thead>
+                    <tbody>
+
+                        <tr ng-repeat="record in doctorsVisit">
+                            <td>{{record.DOCTOR_VISIT_ID}}</td>
+                            <td>{{record.DOCTOR_NAME}}</td>
+                            <td>{{record.VISIT_DATETIME}}</td>
+                            <td>{{record.REMARKS}}</td>
+                            <td><button ng-click="displayDetails(record.DOCTOR_VISIT_ID, record.DOCTOR_ID);">View Details</button></td>
+                            <!--<td><button ng-click="deleteRecord(doctor.DOCTOR_ID);">DETAILS</button></td>-->
+                        </tr>
+
+                
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

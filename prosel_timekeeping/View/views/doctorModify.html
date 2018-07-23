@@ -1,0 +1,138 @@
+<div ng-controller="formValidation" >
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>ADD / EDIT DOCTOR RECORD</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a>Doctor</a>
+            </li>
+            <li class="active">
+                <strong>Add / Edit Doctor Record</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+    <!--<form role="form" name="doctor_form" ng-submit="signupForm()" novalidate>-->
+    <form role="form" name="signup_form" novalidate ng-submit="signupForm()">
+    
+    <div class="row" data-ng-init="displayDoctorDetails()">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">First Name</label>
+
+                            <div class="col-sm-10">
+                                
+                                <input type="text" placeholder="First Name" class="form-control" name="FIRST_NAME" ng-model="doctors.FIRST_NAME" required>
+                                <div class="m-t-xs" ng-show="signup_form.FIRST_NAME.$invalid && signup_form.submitted">
+                                    <small class="text-danger" ng-show="signup_form.FIRST_NAME.$error.required">Required field. Please input a value in this field</small>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Middle Initial</label>
+                            <div class="col-sm-10">
+                                <input type="text" placeholder="Middle Initial" id="MIDDLE_INITIAL" ng-model="doctors.MIDDLE_INITIAL" class="form-control">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Last Name</label>
+                            <div class="col-sm-10">
+                                
+                                <input type="text" placeholder="Last Name" class="form-control" id="LAST_NAME" ng-model="doctors.LAST_NAME" required>
+                                <div class="m-t-xs" ng-show="signup_form.LAST_NAME.$invalid && signup_form.submitted">
+                                    <small class="text-danger" ng-show="signup_form.LAST_NAME.$error.required">Required field. Please input a value in this field</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Specialization</label>
+                            <div class="col-sm-10">
+                                <input type="text" placeholder="Specialization" ng-model="doctors.DOCTOR_SPECIALTY_ID" id="SPECIALIZATION" class="form-control">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Address 1</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="ADDRESS1" placeholder="Address1" id="address1" ng-model="doctors.ADDRESS1" class="form-control">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Address 2</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="ADDRESS2" placeholder="Address2" id="address2" ng-model="doctors.ADDRESS2" class="form-control">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Frequency</label>
+                            <div class="col-sm-10">
+                                 <label class="checkbox-inline"> 
+                                    <input icheck type="radio" value="1" ng-model="doctors.FREQUENCY" id="FREQUENCY" name="frequency"> 1
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input icheck type="radio" value="2" ng-model="doctors.FREQUENCY" id="FREQUENCY" name="frequency"> 2
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input icheck type="radio" value="3" ng-model="doctors.FREQUENCY" id="FREQUENCY" name="frequency"> 3
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input icheck type="radio" value="4" ng-model="doctors.FREQUENCY" id="FREQUENCY" name="frequency"> 4
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input icheck type="radio" value="5" ng-model="doctors.FREQUENCY" id="FREQUENCY" name="frequency"> 5
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input icheck type="radio" value="6" ng-model="doctors.FREQUENCY" id="FREQUENCY" name="frequency"> 6
+                                </label>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group" name="user">
+                            <label class="col-sm-2 control-label">Assigned To</label>
+                            <div class="col-sm-10">
+                                <select data-ng-options="o.FULL_NAME for o in users" name="USER_ID" data-ng-model="doctors.selectedOption"></select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 pull-right">
+
+                                <button class="btn btn-sm btn-primary" type="button" ng-click="modifyRecord()">Submit form</button>
+                                <button class="btn btn-white" type="button" ng-click="back()">Back to Doctors List</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+    </form>
+    </div>
+</div>
+</div>
