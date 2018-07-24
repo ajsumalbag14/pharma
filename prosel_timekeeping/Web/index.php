@@ -18,6 +18,12 @@ include_once 'initial.php';
 $modules = new Modules($db);
 $result = $modules->getModules($_SESSION["USER_ID"]);
 
+$host = $_SERVER['HTTP_HOST'];
+$parent = '/pharma/prosel_timekeeping';
+$module = '/Web';
+$path = 'http://'.$host.$parent.$module.'/';
+$index = 'active';
+
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +42,8 @@ $result = $modules->getModules($_SESSION["USER_ID"]);
     <link href="library/css/animate.css" rel="stylesheet">
     <link href="library/css/style.css" rel="stylesheet">
 	
+	<link rel="shortcut icon" href="library/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="library/img/favicon.ico" type="image/x-icon">
 	
 	<!-- Google Maps -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQTpXj82d8UpCi97wzo_nKXL7nYrd4G70"></script>

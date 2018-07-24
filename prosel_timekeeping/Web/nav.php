@@ -14,32 +14,36 @@
 			if($_SESSION["USER_TYPE"] <> "Area Manager") {
 				?>
 
-				<li class="active">
-					<a href="index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
+				<li class="<?php echo $index?>">
+					<a href="<?php echo $path ?>index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
 				</li>
 				
-				<li>
-					<a href="users/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Users</span></a>
+				<li class="<?php echo $users?>">
+					<a href="<?php echo $path ?>users/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Users</span></a>
 				</li>
 				
-				<li>
-					<a href="doctors/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Doctors</span></a>
+				<li class="<?php echo $doctors?>">
+					<a href="<?php echo $path ?>doctors/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Doctors</span></a>
 				</li>
 				
-				<li>
-					<a href="Products/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Products</span></a>
+				<li class="<?php echo $products?>">
+					<a href="<?php echo $path ?>Products/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Products</span></a>
 				</li>
 				
-				<li>
-					<a href="areamanager/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Area Manager</span></a>
+				<li class="<?php echo $am?>">
+					<a href="<?php echo $path ?>areamanager/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Area Manager</span></a>
 				</li>
 				
-				<li>
-					<a href="doctorvisitreport/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Doctor Visit Report</span></a>
+				<li class="<?php echo $visit?>">
+					<a href="<?php echo $path ?>doctorvisitreport/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Doctor Visit Report</span></a>
 				</li>
 				
-				<li>
-					<a href="amactivityreport/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">AM Activity Report</span></a>
+				<li class="<?php echo $activity?>">
+					<a href="<?php echo $path ?>amactivityreport/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">AM Activity Report</span></a>
+				</li>
+
+				<li class="<?php echo $summary?>">
+					<a href="<?php echo $path ?>summaryreport/index.php"><i class="fa fa-list"></i> <span class="nav-label">AM Summary Report</span></a>
 				</li>
 			
 			<?php
@@ -47,11 +51,11 @@
 			else
 			{
 			?>
-				<li class="active">
-					<a href="index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
+				<li class="<?php echo $index?>">
+					<a href="<?php echo $path ?>index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
 				</li>
-				<li>
-					<a href="doctors/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Doctors</span></a>
+				<li class="<?php echo $doctors?>">
+					<a href="<?php echo $path ?>doctors/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Doctors</span></a>
 				</li>
 			<?php
 			}

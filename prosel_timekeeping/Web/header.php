@@ -15,6 +15,10 @@ include_once '../initial.php';
 $modules = new Modules($db);
 $result = $modules->getModules($_SESSION["USER_ID"]);
 
+$host = $_SERVER['HTTP_HOST'];
+$parent = '/pharma/prosel_timekeeping';
+$module = '/Web';
+$path = 'http://'.$host.$parent.$module.'/';
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +30,9 @@ $result = $modules->getModules($_SESSION["USER_ID"]);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title><?php echo $page_title; ?></title>
+
+    <link rel="shortcut icon" href="../library/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../library/img/favicon.ico" type="image/x-icon">
 
     <link href="../library/css/bootstrap.min.css" rel="stylesheet">
     <link href="../library/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -44,89 +51,9 @@ $result = $modules->getModules($_SESSION["USER_ID"]);
 
 <div id="wrapper">
 
-    <nav class="navbar-default navbar-static-side" role="navigation">
-        <div class="sidebar-collapse">
-            <ul class="nav metismenu" id="side-menu">
-                <li class="nav-header">
-                     <div class="dropdown profile-element">
-                            <a  class="dropdown-toggle" href="#">
-                            <span class="clear"> 
-								<span class="block m-t-xs"> 
-									<strong class="font-bold"><?php echo $_SESSION["NAME"];?></strong>
-								</span> 
-								
-							</span> </a>
-                           
-                    </div>
-                   
-                </li>
-				
-				
-			<?php
-			if($_SESSION["USER_TYPE"] <> "Area Manager") {
-				?>
-
-				<li class="active">
-					<a href="../index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
-				</li>
-				
-				<li>
-					<a href="../users/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Users</span></a>
-				</li>
-				
-				<li>
-					<a href="../doctors/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Doctors</span></a>
-				</li>
-				
-				<li>
-					<a href="../products/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Products</span></a>
-				</li>
-				
-				<li>
-					<a href="../areamanager/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Area Manager</span></a>
-				</li>
-				
-				<li>
-					<a href="../doctorvisitreport/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Doctor Visit Report</span></a>
-				</li>
-				
-				<li>
-					<a href="../amactivityreport/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">AM Activity Report</span></a>
-				</li>
-			
-			<?php
-			}
-			else
-			{
-			?>
-				<li class="active">
-					<a href="index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
-				</li>
-				<li>
-					<a href="doctors/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Doctors</span></a>
-				</li>
-			<?php
-			}
-			?>
-				
-				<?php
-				/*
-					//navigation in here will fix this
-					while ($row = $result->fetch(PDO::FETCH_ASSOC)){ 
-						extract($row); //Import variables into the current symbol table from an array
-					?>
-				
-						
-						<li>
-							<a href=
-							"../<?php echo $row["PAGE_URI"]; ?>"><i class="fa fa-th-large"></i> <span class="nav-label"><?php echo $row["MODULE_NAME"]; ?></span></a>
-						</li>
-					<?php
-					} */
-					?>
-            </ul>
-        </div>
-    </nav>
+	<?php
+		include_once('nav.php'); 
+	?>
 
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">

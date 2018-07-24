@@ -79,10 +79,8 @@ class DoctorVisit
 			WHERE dv.USER_ID = $this->userid";
 			
 		
-		if($startdate <> '' && $enddate <> '')
-		{
+		if ($startdate != '' && $enddate != '') {
 			$sql .= " AND VISIT_DATETIME BETWEEN '$startdate' AND '$enddate 23:59:59' ";
-			
 		}
 		
 		$sql .= " GROUP BY dp.DOCTOR_VISIT_ID ORDER BY VISIT_DATETIME ASC;";
