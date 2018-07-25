@@ -15,7 +15,7 @@ class Database
     private $host = 'localhost';
     private $db_name = 'prosel';
     private $username = 'root';
-    private $password = '';
+    private $password = '@RVINyondu2018';
 	
     public $db_conn;
 

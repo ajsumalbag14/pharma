@@ -1,5 +1,6 @@
 <?php
 $page_title = "Doctors";
+$doctors = 'active';
 
 // include database and object files
 include_once '../classes/doctors.php';

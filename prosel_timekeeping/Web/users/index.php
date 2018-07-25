@@ -1,5 +1,6 @@
 <?php
 $page_title = "Users";
+$users = 'active';
 
 // include database and object files
 include_once '../classes/users.php';

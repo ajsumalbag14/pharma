@@ -1,5 +1,6 @@
 <?php
 $page_title = "Area Manager";
+$am = 'active';
 
 // include header file
 include_once '../classes/areamanager.php';

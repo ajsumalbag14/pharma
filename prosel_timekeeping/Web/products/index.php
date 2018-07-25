@@ -1,6 +1,6 @@
 <?php
 $page_title = "Products";
-
+$products = 'active';
 // include header file
 include_once '../classes/products.php';
 include_once "../header.php";

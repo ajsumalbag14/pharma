@@ -1,5 +1,6 @@
 <?php
 $page_title = "Area Manager Activity Report";
+$activity = 'active';
 
 include_once "../header.php";
 include_once '../classes/areamanager.php';

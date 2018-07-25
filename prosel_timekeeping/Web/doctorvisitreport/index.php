@@ -1,5 +1,6 @@
 <?php
 $page_title = "Doctor Visit Report";
+$visit = 'active';
 
 include_once "../header.php";
 include_once '../classes/doctorvisit.php';

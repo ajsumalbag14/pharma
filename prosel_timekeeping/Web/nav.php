@@ -45,6 +45,13 @@
 				<li class="<?php echo $summary?>">
 					<a href="<?php echo $path ?>summaryreport/index.php"><i class="fa fa-list"></i> <span class="nav-label">AM Summary Report</span></a>
 				</li>
+				
+				
+				<?php if ($_SESSION['USER_TYPE'] == 'Administrator') { ?>		
+				<li class="<?php echo $areamgmt?>">
+					<a href="<?php echo $path ?>area_management/index.php"><i class="fa fa-cog"></i> <span class="nav-label">Area Management</span></a>
+				</li>
+				<?php } ?>
 			
 			<?php
 			}

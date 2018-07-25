@@ -26,6 +26,9 @@ class AreaManager
 	public $locationlat;
 	public $locationlong;
 
+
+	public $query_string;
+
     public function __construct($db)
     {
         $this->db_conn = $db;
@@ -57,6 +60,63 @@ class AreaManager
         $prep_state->bindParam(1, $from_record_num, PDO::PARAM_INT); //Represents the SQL INTEGER data type.
         $prep_state->bindParam(2, $records_per_page, PDO::PARAM_INT);
 
+        $prep_state->execute();
+
+        return $prep_state;
+        $db_conn = NULL;
+	}
+	
+	function getAttendance($request = [])
+    {
+		$type = '';
+		$area_id = '';
+		$area_manager = '';
+
+		//filter type
+		if ($request['type'] != 'All') {
+			$type = " AND at.ACTIVITY_TYPE = '".$request['type']."'";
+		}
+
+		//filter by area id
+		if ($request['area_id'] > 0) {
+			$area_id = " AND u.AREA_ID = ".$request['area_id'];
+		}
+
+		//filter by area manager
+		if ($request['area_manager'] > 0) {
+			$area_manager = " AND at.USER_ID = ".$request['area_manager'];
+		}
+
+		// single day
+		if ($request['datediff'] == 0) {
+			$sql = "select u.AREA_ID,u.USER_ID,u.PARENT_USER_ID, u.FIRST_NAME, u.LAST_NAME,
+			date(at.ACTIVITY_DATETIME) as dt, at.ACTIVITY_DATETIME,at.ACTIVITY_TYPE,at.REMARKS 
+			from $this->table_name u 
+			inner join area_manager_activity at on at.USER_ID = u.USER_ID 
+			where u.parent_user_id = ".$request['parent_user_id']."
+			AND date(at.ACTIVITY_DATETIME) = '".$request['startdate']."'
+			".$type."
+			".$area_id."
+			".$area_manager." 
+			ORDER BY u.USER_ID, at.ACTIVITY_DATETIME ASC";
+		} else {
+		// multiple dates
+			$sql = "select u.AREA_ID,u.USER_ID,u.PARENT_USER_ID, u.FIRST_NAME, u.LAST_NAME,
+			date(at.ACTIVITY_DATETIME) as dt, at.ACTIVITY_DATETIME,at.ACTIVITY_TYPE,at.REMARKS  
+			from $this->table_name u 
+			inner join area_manager_activity at on at.USER_ID = u.USER_ID 
+			where u.parent_user_id = ".$request['parent_user_id']."
+			AND date(at.ACTIVITY_DATETIME) BETWEEN '".$request['startdate']."' AND '".$request['enddate']."'
+			".$type."
+			".$area_id."
+			".$area_manager."
+			ORDER BY u.USER_ID, at.ACTIVITY_DATETIME ASC";
+		} 
+
+		//echo $sql;
+		$this->query_string = $sql;
+		
+        $prep_state = $this->db_conn->prepare($sql);
         $prep_state->execute();
 
         return $prep_state;
@@ -102,7 +162,7 @@ class AreaManager
 				";
 			
 		
-		if($startdate <> '' && $enddate <> '')	
+		if($startdate != '' && $enddate != '')	
 		{
 			$sql .= " AND ACTIVITY_DATETIME BETWEEN '$startdate' AND '$enddate 23:59:59'";
 			
@@ -116,6 +176,17 @@ class AreaManager
         $prep_state->execute();
 
         return $prep_state;
+	}
+
+	function getDateDiff($start_date, $end_date) {
+
+		$sd = strtotime($start_date);
+		$ed = strtotime($end_date);
+		$datediff = $ed - $sd;
+
+		$result = (round($datediff / (60 * 60 * 24)) + 1);
+
+		return $result;
 	}
 }
 
