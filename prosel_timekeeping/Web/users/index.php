@@ -39,10 +39,10 @@ $user = new Users($db);
 					echo "<table class='table table-hover table-responsive table-bordered'>";
 					echo "<tr>";
 					
+					echo "<th>Username</th>";
 					echo "<th>Name</th>";
 					echo "<th>Area / Coverage</th>";
 					echo "<th>User Type</th>";
-					echo "<th>Username</th>";
 					echo "<th>Status</th>";
 					echo "<th>Remarks</th>";
 					echo "<th>Under</th>";
@@ -54,11 +54,10 @@ $user = new Users($db);
 
 						echo "<tr>";
 
-						
+						echo "<td>$row[USERNAME]</td>";
 						echo "<td>$row[NAME]</td>";
 						echo "<td>$row[AREA_NAME]</td>";
 						echo "<td>$row[DESCRIPTION]</td>";
-						echo "<td>$row[USERNAME]</td>";
 						
 						if($row["STATUS"] == "0")
 							$status = "Disabled";

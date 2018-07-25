@@ -49,7 +49,10 @@ if(isset($_POST["username"]) && isset($_POST["password"]))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Prosel | Login</title>
+	<title>Prosel | Login</title>
+	
+	<link rel="shortcut icon" href="library/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="library/img/favicon.ico" type="image/x-icon">
 
     <link href="library/css/bootstrap.min.css" rel="stylesheet">
     <link href="library/font-awesome/css/font-awesome.css" rel="stylesheet">

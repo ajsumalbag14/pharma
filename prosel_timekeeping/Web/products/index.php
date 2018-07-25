@@ -1,6 +1,7 @@
 <?php
 $page_title = "Products";
 $products = 'active';
+
 // include header file
 include_once '../classes/products.php';
 include_once "../header.php";
@@ -41,7 +42,7 @@ $product = new Products($db);
 				echo "<th>Generic Name or Packing Shade</th>";
 				echo "<th>Quantity</th>";
 				echo "<th>Status</th>";
-				echo "<th>Date Added</th>";
+				//echo "<th>Date Added</th>";
 				echo "</tr>";
 
 				while ($row = $prep_state->fetch(PDO::FETCH_ASSOC)){
@@ -55,8 +56,15 @@ $product = new Products($db);
 					echo "<td>$row[SIZE]</td>";
 					echo "<td>$row[GENERIC_NAME_OR_PACKING_SHADE]</td>";
 					echo "<td>$row[QUANTITY]</td>";
-					echo "<td>$row[STATUS]</td>";
-					echo "<td>$row[DATE_ADDED]</td>";
+					
+					$vstat = "";
+					if($row["STATUS"] == "0")
+						$vstat = "Disabled";
+					else if($row["STATUS"] == "1")
+						$vstat = "Enabled";
+					
+					echo "<td>$vstat</td>";
+					//echo "<td>$row[DATE_ADDED]</td>";
 
 					echo "<td>";
 					// edit user button

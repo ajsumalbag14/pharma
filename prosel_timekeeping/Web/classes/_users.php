@@ -168,7 +168,6 @@ class Users
 			 FROM users u
 			INNER JOIN area a ON a.AREA_ID = u.AREA_ID
 			INNER JOIN user_types ut ON ut.USER_TYPE_ID = u.USER_TYPE_ID";
-			
 		
 		if($_SESSION["USER_TYPE"] == "DSM")
 		{
@@ -187,14 +186,14 @@ class Users
 			
 		}
 		
-		$sql .= " ORDER BY u.USERNAME ASC LIMIT $from_record_num, $records_per_page";
+		$sql .= " ORDER BY FIRST_NAME ASC LIMIT ?, ?";
 		
 		//echo $sql;
 		
         $prep_state = $this->db_conn->prepare($sql);
 
-        //$prep_state->bindParam(1, $from_record_num, PDO::PARAM_INT); //Represents the SQL INTEGER data type.
-        //$prep_state->bindParam(2, $records_per_page, PDO::PARAM_INT);
+        $prep_state->bindParam(1, $from_record_num, PDO::PARAM_INT); //Represents the SQL INTEGER data type.
+        $prep_state->bindParam(2, $records_per_page, PDO::PARAM_INT);
 
         $prep_state->execute();
 

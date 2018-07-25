@@ -27,7 +27,7 @@
 				</li>
 				
 				<li class="<?php echo $products?>">
-					<a href="<?php echo $path ?>Products/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Products</span></a>
+					<a href="<?php echo $path ?>products/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Products</span></a>
 				</li>
 				
 				<li class="<?php echo $am?>">

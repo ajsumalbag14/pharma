@@ -37,7 +37,7 @@ $doctor = new Doctors($db);
 
 				echo "<table class='table table-hover table-responsive table-bordered'>";
 				echo "<tr>";
-				//echo "<th>Doctor ID</th>";
+				echo "<th>Doctor ID</th>";
 				echo "<th>Last Name</th>";
 				echo "<th>Middle Initial</th>";
 				echo "<th>First Name</th>";
@@ -54,7 +54,7 @@ $doctor = new Doctors($db);
 
 					echo "<tr>";
 
-					//echo "<td>$row[DOCTOR_ID]</td>";
+					echo "<td>$row[DOCTOR_ID]</td>";
 					echo "<td>$row[LAST_NAME]</td>";
 					echo "<td>$row[MIDDLE_INITIAL]</td>";
 					echo "<td>$row[FIRST_NAME]</td>";

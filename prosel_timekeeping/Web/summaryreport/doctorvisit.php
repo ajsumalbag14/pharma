@@ -2,7 +2,7 @@
 $page_title = "Doctor Visit";
 
 include_once "../header.php";
-include_once '../classes/doctorvisit.php';
+include_once '../classes/_doctorvisit.php';
 
 ?>
 <div class="wrapper wrapper-content animated fadeInRight">

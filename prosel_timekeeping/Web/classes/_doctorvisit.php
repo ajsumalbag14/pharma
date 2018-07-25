@@ -38,8 +38,7 @@ class DoctorVisit
 				INNER JOIN doctor_purchase dp ON dp.DOCTOR_VISIT_ID = dv.DOCTOR_VISIT_ID
 				WHERE dv.USER_ID = $this->userid 
 				GROUP BY dp.DOCTOR_VISIT_ID;";
-		
-		//echo $sql;
+			
 				
 		$prep_state = $this->db_conn->prepare($sql);
         $prep_state->execute();
@@ -80,10 +79,8 @@ class DoctorVisit
 			WHERE dv.USER_ID = $this->userid";
 			
 		
-		if($startdate <> '' && $enddate <> '')
-		{
+		if ($startdate != '' && $enddate != '') {
 			$sql .= " AND VISIT_DATETIME BETWEEN '$startdate' AND '$enddate 23:59:59' ";
-			
 		}
 		
 		$sql .= " GROUP BY dp.DOCTOR_VISIT_ID ORDER BY VISIT_DATETIME ASC;";
@@ -114,13 +111,36 @@ class DoctorVisit
 		return $row;
 		
 	}
+
+	function getDoctorsVisitByDate($date)
+	{
+		
+		if ($date != '') {
+			$dt_que = " AND date(dv.VISIT_DATETIME) = '$date' ";
+		}
+
+		$sql = "SELECT 
+				dv.DOCTOR_VISIT_ID,
+				CONCAT(u.FIRST_NAME, ' ', u.LAST_NAME) AS 'USER',
+				CONCAT(d.FIRST_NAME, ' ', d.MIDDLE_INITIAL, ' ', d.LAST_NAME) AS 'DOCTOR',
+				dv.VISIT_DATETIME,
+				SUM(NET_PRICE) AS 'TOTAL'
+			FROM doctor_visit dv
+			INNER JOIN doctors d ON d.DOCTOR_ID = dv.DOCTOR_ID
+			INNER JOIN users u ON u.USER_ID = dv.USER_ID
+			INNER JOIN doctor_purchase dp ON dp.DOCTOR_VISIT_ID = dv.DOCTOR_VISIT_ID
+			WHERE dv.USER_ID = $this->userid 
+				".$dt_que;
+
+		$sql .= " GROUP BY dp.DOCTOR_VISIT_ID ORDER BY VISIT_DATETIME ASC;";
+			
+		//echo $sql;
+		
+		$prep_state = $this->db_conn->prepare($sql);
+        $prep_state->execute();
+
+        return $prep_state;
+	}
 	
 	
 }
-
-
-
-
-
-
-

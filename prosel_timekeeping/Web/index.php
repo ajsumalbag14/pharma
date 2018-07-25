@@ -5,7 +5,7 @@ error_reporting(E_ALL); // report all php errors
 
 $page_title= "Prosel Dashboard";
 
-if($_SESSION["USER_ID"] == null) {
+if(!isset($_SESSION["USER_ID"]) || $_SESSION["USER_ID"] == null) {
 	echo "<script>window.location='login.php';</script>";
 }
 
@@ -85,6 +85,7 @@ $index = 'active';
 								   Welcome <?php echo $_SESSION["NAME"];?>!
 								</h1>
 								<hr />
+								<!--
 								<p>
 									It is an application skeleton for a typical web app. You can use it to quickly bootstrap your webapp projects and dev environment for these projects.
 								</p>
@@ -100,7 +101,7 @@ $index = 'active';
 								</ul>
 								
 								<p>Feel free to explore the features of this application.</p>
-								
+								-->
 							</div>
 							
 							<div class="col-sm-6">

@@ -36,9 +36,18 @@ include_once "../header.php";
 				$product->productdescription = htmlentities(trim($_POST['productdescription']));
 				$product->size = htmlentities(trim($_POST['size']));
 				$product->genericnameorpackingshade = htmlentities(trim($_POST['genericnameorpackingshade']));
-				$product->price = htmlentities(trim($_POST['price']));
+				
+				
 				$product->quantity = htmlentities(trim($_POST['quantity']));
 				$product->status = $_POST['status'];
+				
+				if($_SESSION["USER_TYPE"] == "Administrator") {
+					$product->price = htmlentities(trim($_POST['price']));
+				}
+				else
+				{
+					$product->price = "0";
+				}
 
 
 				// Edit user
@@ -70,7 +79,7 @@ include_once "../header.php";
 				
 				<tr>
 					<td>Product Code</td>
-					<td><input type='text' name='productcode' value='<?php echo $product->productcode;?>' class='form-control' placeholder="Enter Product Code" required></td>
+					<td><input type='text' readonly name='productcode' value='<?php echo $product->productcode;?>' class='form-control' placeholder="Enter Product Code" required></td>
 				</tr>
 
 				<tr>
@@ -88,10 +97,21 @@ include_once "../header.php";
 					<td><input type='text' name='genericnameorpackingshade' class='form-control' value='<?php echo $product->genericnameorpackingshade;?>' placeholder="Enter Generic Name or Packing Shade" required></td>
 				</tr>
 				
-				  <tr>
-					<td>Price</td>
-					<td><input type='number' name='price' class='form-control' value='<?php echo $product->price;?>' placeholder="Enter Generic Name or Packing Shade" required></td>
-				</tr>
+				<?php 
+				
+				if($_SESSION["USER_TYPE"] == "Administrator") {
+					
+					?>
+				
+					  <tr>
+						<td>Price</td>
+						<td><input type='number' name='price' class='form-control' value='<?php echo $product->price;?>' placeholder="Enter Price" required></td>
+					</tr>
+					
+					<?php
+				}
+				
+				?>
 				
 				 <tr>
 					<td>Quantity</td>
