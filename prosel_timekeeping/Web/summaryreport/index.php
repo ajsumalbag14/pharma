@@ -1,5 +1,5 @@
 <?php
-	$page_title = 'Doctors Visits Summary';
+	$page_title = 'Doctor Visit Summary';
 	$summary = 'active';
 
 	include_once "../header.php";

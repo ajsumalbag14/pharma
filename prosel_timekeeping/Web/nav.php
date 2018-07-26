@@ -43,7 +43,7 @@
 				</li>
 
 				<li class="<?php echo $summary?>">
-					<a href="<?php echo $path ?>summaryreport/index.php"><i class="fa fa-list"></i> <span class="nav-label">AM Summary Report</span></a>
+					<a href="<?php echo $path ?>summaryreport/index.php"><i class="fa fa-list"></i> <span class="nav-label">Doctor Visit Summary</span></a>
 				</li>
 				
 				
