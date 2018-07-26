@@ -18,81 +18,92 @@ $doctor = new Doctors($db);
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
 		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="col-sm-10"><h3>List of Doctors</h3></div>
+					<div class="col-sm-2 text-right"><a href="create.php" class="btn btn-success"> <i class="fa fa-plus"></i> Add</a></div>
 
-			<?php
+					<div class="clearfix"></div>
+				</div>
 
-			// create user button
-			echo "<div class='right-button-margin'>";
-			echo "<a href='create.php' class='btn btn-primary pull-right'>";
-			echo "<span class='glyphicon glyphicon-plus'></span> Create Record";
-			echo "</a>";
-			echo "</div>";
+				<?php
 
-			// select all users
-			$prep_state = $doctor->getAll($from_record_num, $records_per_page); //Name of the PHP variable to bind to the SQL statement parameter.
-			$num = $prep_state->rowCount();
+				// select all users
+				$prep_state = $doctor->getAll($from_record_num, $records_per_page); //Name of the PHP variable to bind to the SQL statement parameter.
+				$num = $prep_state->rowCount();
 
-			// check if more than 0 record found
-			if($num>=0){
+				?>
 
-				echo "<table class='table table-hover table-responsive table-bordered'>";
-				echo "<tr>";
-				echo "<th>Doctor ID</th>";
-				echo "<th>Last Name</th>";
-				echo "<th>Middle Initial</th>";
-				echo "<th>First Name</th>";
-				echo "<th>Doctor Specialty</th>";
-				echo "<th>Address 1</th>";
-				echo "<th>Address 2</th>";
-				echo "<th>Frequency</th>";
-				echo "<th>Under AM</th>";
-				echo "</tr>";
+				<!-- /.panel-heading -->
+				<div class="panel-body">
+					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>DOCTOR ID</th>
+								<th>LAST NAME</th>
+								<th>MIDDLE INITIAL</th>
+								<th>FIRST NAME</th>
+								<th>DOCTOR SPECIALTY</th>
+								<th>ADDRESS 1</th>
+								<th>ADDRESS 2</th>
+								<th>FREQUENCY</th>
+								<th>UNDER AM</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php 
+						// check if more than 0 record found
+						if ($num > 0 ){
 
-				while ($row = $prep_state->fetch(PDO::FETCH_ASSOC)){
+							$ctr = 1;
+							while ($row = $prep_state->fetch(PDO::FETCH_ASSOC)){
+								extract($row); //Import variables into the current symbol table from an array
+						
+								if ($ctr%2 == 0) {
+									echo '<tr class="even gradeX">';
+								} else {
+									echo '<tr class="odd gradeX">';
+								}	
 
-					extract($row); //Import variables into the current symbol table from an array
+								echo '
+										<td>'.$row['DOCTOR_ID'].'</td>
+										<td>'.$row['LAST_NAME'].'</td>
+										<td>'.$row['MIDDLE_INITIAL'].'</td>
+										<td>'.$row['FIRST_NAME'].'</td>
+										<td>'.$row['DOCTOR_SPECIALTY_ID'].'</td>
+										<td>'.$row['ADDRESS1'].'</td>
+										<td>'.$row['ADDRESS2'].'</td>
+										<td>'.$row['FREQUENCY'].'</td>
+										<td>'.$row['UNDER'].'</td>
+										<td class="center">
+											<a href="edit.php?doctorid='.$row['DOCTOR_ID'].'" class="btn btn-warning left-margin">
+											<span class="glyphicon glyphicon-edit"></span> Edit
+											</a>
+										</td>
+									</tr>
+								';
 
-					echo "<tr>";
-
-					echo "<td>$row[DOCTOR_ID]</td>";
-					echo "<td>$row[LAST_NAME]</td>";
-					echo "<td>$row[MIDDLE_INITIAL]</td>";
-					echo "<td>$row[FIRST_NAME]</td>";
-					echo "<td>$row[DOCTOR_SPECIALTY_ID]</td>";
-					echo "<td>$row[ADDRESS1]</td>";
-					echo "<td>$row[ADDRESS2]</td>";
-					echo "<td>$row[FREQUENCY]</td>";
-					echo "<td>$row[UNDER]</td>";
-
-			/*        echo "<td>";
-								$category->id = $category_id;
-								$category->getName();
-								echo $category->name;
-					echo "</td>";
-			*/
-					echo "<td>";
-					// edit user button
-					echo "<a href='edit.php?doctorid=" . $row['DOCTOR_ID'] . "' class='btn btn-warning left-margin'>";
-					echo "<span class='glyphicon glyphicon-edit'></span> Edit";
-					echo "</a>";
-
-					
-
-					echo "</td>";
-					echo "</tr>";
-				}
-
-				echo "</table>";
-
-				// include pagination file
-				include_once 'pagination.php';
-			}
-
-			// if there are no user
-			else{
-				echo "<div> No User found. </div>";
-				}
-			?>
+								$ctr ++;
+							}
+						} else {
+							
+							echo '
+								<tr class="odd gradeX">
+									<td colspan="5">Records not found.</td>
+								</tr>
+							';
+						}
+						?>
+						</tbody>
+					</table>
+					<!-- /.table-responsive -->
+				</div>
+				<!-- /.panel-body -->
+				
+			</div>
+			<!-- /.panel -->
+			
 		</div>
 	</div>
 </div>
