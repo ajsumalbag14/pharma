@@ -9,8 +9,15 @@ if (isset($_POST['query'])) {
     
     
     $columnHeader ='';
-    $columnHeader = "AREA ID"."\t"."AM ID"."\t"."UNDER TO"."\t"."FIRST NAME"."\t"."LAST NAME"."\t"."DATE"."\t"."DATETIME"."\t"."TYPE"."\t"."REMARKS"."\t";
-     
+
+    switch ($_POST['rpt']) {
+    case 1:    
+        $columnHeader = "AREA ID"."\t"."AM ID"."\t"."UNDER TO"."\t"."FIRST NAME"."\t"."LAST NAME"."\t"."DATE"."\t"."DATETIME"."\t"."TYPE"."\t"."REMARKS"."\t";
+        break;
+    case 2:
+        $columnHeader = "DOCTOR_VISIT_ID"."\t"."USER"."\t"."DOCTOR"."\t"."VISIT_DATETIME"."\t"."TOTAL PURCHASED";
+        break;
+    }
     
     $setData='';
     

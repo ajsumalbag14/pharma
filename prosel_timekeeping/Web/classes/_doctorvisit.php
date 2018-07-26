@@ -16,6 +16,8 @@ class DoctorVisit
 	public $locationlat;
 	public $locationlong;
 	public $remarks;
+
+	public $query_string;
 	
 	
     public function __construct($db)
@@ -41,7 +43,7 @@ class DoctorVisit
 			
 				
 		$prep_state = $this->db_conn->prepare($sql);
-        $prep_state->execute();
+		$prep_state->execute();
 
         return $prep_state;
 	}
@@ -56,7 +58,7 @@ class DoctorVisit
         $row = $prep_state->fetch(PDO::FETCH_ASSOC);
 		
 		$row["DOCTOR_SIGNATURE"] = base64_encode($row["DOCTOR_SIGNATURE"]);
-				
+
 		return $row;
 		
 	}
@@ -135,6 +137,7 @@ class DoctorVisit
 		$sql .= " GROUP BY dp.DOCTOR_VISIT_ID ORDER BY VISIT_DATETIME ASC;";
 			
 		//echo $sql;
+		$this->query_string = $sql;
 		
 		$prep_state = $this->db_conn->prepare($sql);
         $prep_state->execute();

@@ -152,15 +152,19 @@
 					<!-- /.table-responsive -->
 				</div>
 				<!-- /.panel-body -->
-
-					<form action="../export/index.php" method="post">
-						<input type="hidden" name="module" value="<?php echo $page_title?>">
-						<textarea name="query" cols="30" rows="10" style="display:none">
-							<?php echo $areamanager->query_string; ?>
-						</textarea>
-						<input type="submit" class="btn btn-primary" value="Export to Excel">
-					</form>
-
+				<?php
+				if ($num > 0) {
+					echo '
+						<form action="../export/index.php" method="post">
+							<input type="hidden" name="module" value="'.$page_title.'">
+							<input type="hidden" name="rpt" value="1">
+							<textarea name="query" cols="30" rows="10" style="display:none">
+								'.$areamanager->query_string.'
+							</textarea>
+							<input type="submit" class="btn btn-primary" value="Export to Excel">
+						</form>';
+				}
+				?>
 			</div>
 			<!-- /.panel -->
 		</div>

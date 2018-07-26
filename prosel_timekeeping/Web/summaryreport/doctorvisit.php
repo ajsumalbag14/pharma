@@ -66,8 +66,20 @@ include_once '../classes/_doctorvisit.php';
 				}
 			?>
 
-			
-			<h3><a href="index.php" class="btn btn-primary"> Back </a> </h3>
+			<?php
+				if ($num > 0) {
+					echo '
+						<form action="../export/index.php" method="post">
+							<input type="hidden" name="module" value="'.$page_title.'">
+							<input type="hidden" name="rpt" value="2">
+							<textarea name="query" cols="30" rows="10" style="display:none">
+								'.$doctorvisit->query_string.'
+							</textarea>
+							<input type="submit" class="btn btn-primary" value="Export to Excel">
+						</form>';
+				}
+			?>
+			<h3><a href="index.php" class="btn btn-success"> Back </a> </h3>
 		</div>
 	</div>
 </div>
