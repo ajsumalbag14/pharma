@@ -156,6 +156,38 @@ class Doctors
         $db_conn = NULL;
     }
 
+    function getAllDoctors()
+    {
+		$sql = "SELECT
+					d.*,
+					CONCAT(u.FIRST_NAME, ', ', u.LAST_NAME) AS 'UNDER'
+					from doctors d
+				INNER JOIN users u
+				ON u.USER_ID = d.USER_ID";
+		
+		if($_SESSION["USER_TYPE"] == "Area Manager") {
+			$sql .= " WHERE d.USER_ID = ". $_SESSION["USER_ID"] ." ";
+		}
+		
+		else if($_SESSION["USER_TYPE"] == "DSM") {
+			$sql .= " WHERE d.USER_ID IN (SELECT USER_ID FROM users WHERE PARENT_USER_ID = ".$_SESSION["USER_ID"].") ";
+		}
+		
+		$sql .= " ORDER BY u.FIRST_NAME ASC";
+		
+        $prep_state = $this->db_conn->prepare($sql);
+
+        //$prep_state->bindParam(1, $from_record_num, PDO::PARAM_INT); //Represents the SQL INTEGER data type.
+        //$prep_state->bindParam(2, $records_per_page, PDO::PARAM_INT);
+
+        $prep_state->execute();
+		
+		//echo $sql;
+
+        return $prep_state;
+        $db_conn = NULL;
+    }
+
     // for edit user form when filling up
     function getRecord()
     {

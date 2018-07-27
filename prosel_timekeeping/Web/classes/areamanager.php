@@ -61,6 +61,21 @@ class AreaManager
 
         return $prep_state;
         $db_conn = NULL;
+	}
+	
+	function getAllAM()
+    {
+		//$sql = "SELECT * FROM $this->table_name ORDER BY FIRST_NAME ASC LIMIT ?, ?";
+		$sql = "select * from $this->table_name u inner join user_types ut on ut.USER_TYPE_ID = u.USER_TYPE_ID where ut.USER_TYPE = 'Area Manager';";
+		
+		//echo $sql;
+		
+        $prep_state = $this->db_conn->prepare($sql);
+
+        $prep_state->execute();
+
+        return $prep_state;
+        $db_conn = NULL;
     }
 	
 	function getAMActivity() {

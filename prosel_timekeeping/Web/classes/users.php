@@ -202,6 +202,58 @@ class Users
         $db_conn = NULL;
     }
 	
+	function getAllUsers()
+    {
+		//if ADMIN, PRES, VP DOWN THE LINE, NO CHANGES
+		//echo $_SESSION["USER_TYPE"];
+		
+		$sql = "SELECT 
+				u.USER_ID,
+				CONCAT(u.LAST_NAME, ', ', u.FIRST_NAME) AS 'NAME',
+				a.AREA_NAME,
+				ut.DESCRIPTION,
+				u.USERNAME, 
+				u.STATUS,
+				u.REMARKS,
+				u.PARENT_USER_ID
+			 FROM users u
+			INNER JOIN area a ON a.AREA_ID = u.AREA_ID
+			INNER JOIN user_types ut ON ut.USER_TYPE_ID = u.USER_TYPE_ID";
+			
+		
+		if($_SESSION["USER_TYPE"] == "DSM")
+		{
+			$sql .= " where u.PARENT_USER_ID = ".$_SESSION["USER_ID"];
+		}
+		else if ($_SESSION["USER_TYPE"] == "RSM")
+		{
+			$sql .= " where u.PARENT_USER_ID IN (SELECT USER_ID FROM users 
+					where PARENT_USER_ID = ".$_SESSION["USER_ID"].")";
+		}
+		else if ($_SESSION["USER_TYPE"] == "NSM")
+		{
+			$sql .= " where u.PARENT_USER_ID IN (SELECT USER_ID FROM users 
+					where PARENT_USER_ID IN (SELECT USER_ID FROM users 
+					where PARENT_USER_ID = ".$_SESSION["USER_ID"]."))";
+			
+		}
+		
+		$sql .= " ORDER BY u.USERNAME ASC";
+		
+		//echo $sql;
+		
+        $prep_state = $this->db_conn->prepare($sql);
+
+        //$prep_state->bindParam(1, $from_record_num, PDO::PARAM_INT); //Represents the SQL INTEGER data type.
+        //$prep_state->bindParam(2, $records_per_page, PDO::PARAM_INT);
+
+        $prep_state->execute();
+
+        return $prep_state;
+        $db_conn = NULL;
+    }
+
+	
 	function getName() {
 		 $sql = "SELECT 
 					FIRST_NAME,

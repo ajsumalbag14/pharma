@@ -8,8 +8,6 @@ include_once "../header.php";
 
 // for pagination purposes
 $page = isset($_GET['page']) ? $_GET['page'] : 1; // page is the current page, if there's nothing set, default is page 1
-$records_per_page = 20; // set records or rows of data per page
-$from_record_num = ($records_per_page * $page) - $records_per_page; // calculate for the query limit clause
 
 // instantiate database and user object
 $doctor = new Doctors($db);
@@ -29,7 +27,7 @@ $doctor = new Doctors($db);
 				<?php
 
 				// select all users
-				$prep_state = $doctor->getAll($from_record_num, $records_per_page); //Name of the PHP variable to bind to the SQL statement parameter.
+				$prep_state = $doctor->getAllDoctors(); //Name of the PHP variable to bind to the SQL statement parameter.
 				$num = $prep_state->rowCount();
 
 				?>
@@ -49,6 +47,7 @@ $doctor = new Doctors($db);
 								<th>ADDRESS 2</th>
 								<th>FREQUENCY</th>
 								<th>UNDER AM</th>
+								<th>:</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -67,6 +66,7 @@ $doctor = new Doctors($db);
 								}	
 
 								echo '
+										<td>'.$ctr.'</td>
 										<td>'.$row['DOCTOR_ID'].'</td>
 										<td>'.$row['LAST_NAME'].'</td>
 										<td>'.$row['MIDDLE_INITIAL'].'</td>

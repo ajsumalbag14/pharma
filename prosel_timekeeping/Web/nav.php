@@ -42,8 +42,12 @@
 					<a href="<?php echo $path ?>amactivityreport/index.php"><i class="fa fa-th-large"></i> <span class="nav-label">AM Activity Report</span></a>
 				</li>
 
+				<li class="<?php echo $summaryam?>">
+					<a href="<?php echo $path ?>summaryreport/index.php"><i class="fa fa-list"></i> <span class="nav-label">AM Attendance Report</span></a>
+				</li>
+
 				<li class="<?php echo $summary?>">
-					<a href="<?php echo $path ?>summaryreport/index.php"><i class="fa fa-list"></i> <span class="nav-label">Doctor Visit Summary</span></a>
+					<a href="<?php echo $path ?>summaryreport/visit.php"><i class="fa fa-list"></i> <span class="nav-label">Doctor Visit Summary</span></a>
 				</li>
 				
 				

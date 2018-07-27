@@ -8,9 +8,6 @@ include_once "../header.php";
 
 // for pagination purposes
 $page = isset($_GET['page']) ? $_GET['page'] : 1; // page is the current page, if there's nothing set, default is page 1
-$records_per_page = 20; // set records or rows of data per page
-$from_record_num = ($records_per_page * $page) - $records_per_page; // calculate for the query limit clause
-
 // instantiate database and user object
 $areamanager = new AreaManager($db);
 ?>
@@ -25,7 +22,7 @@ $areamanager = new AreaManager($db);
 				<?php
 
 				// select all users
-				$prep_state = $areamanager->getAM($from_record_num, $records_per_page); //Name of the PHP variable to bind to the SQL statement parameter.
+				$prep_state = $areamanager->getAllAM(); //Name of the PHP variable to bind to the SQL statement parameter.
 				$num = $prep_state->rowCount();
 
 				?>
@@ -44,6 +41,7 @@ $areamanager = new AreaManager($db);
 								<th>STATUS</th>
 								<th>REMARKS</th>
 								<th>UNDER</th>
+								<th>:</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -64,6 +62,7 @@ $areamanager = new AreaManager($db);
 								}	
 
 								echo '
+										<td>'.$ctr.'</td>
 										<td>'.$row['FIRST_NAME'].'</td>
 										<td>'.$row['MIDDLE_NAME'].'</td>
 										<td>'.$row['LAST_NAME'].'</td>
