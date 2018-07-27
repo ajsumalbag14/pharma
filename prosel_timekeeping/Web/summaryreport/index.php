@@ -91,7 +91,7 @@
 								<th>#</th>
 								<th>AREA ID</th>
 								<th>AREA MANAGER</th>
-								<th>UNDER TO</th>
+								<th class="text-center">UNDER</th>
 								<th>DATE TIME</th>
 								<th>TYPE</th>
 								<th>REMARKS</th>
@@ -104,6 +104,12 @@
 							while ($row = $prep_state->fetch(PDO::FETCH_ASSOC)){
 
 								$name = $row["FIRST_NAME"] . " " . $row{"LAST_NAME"};
+								if ($areamanager->parent_name != ' ' && $areamanager->parent_name != '') {
+									$parent = $areamanager->parent_name;
+								} else {
+									$parent = '---';
+								}
+								 
 								$areaid = $row["AREA_ID"];
 								$dt = $row["ACTIVITY_DATETIME"];
 								$type = str_replace('API_' ,'', $row['ACTIVITY_TYPE']);
@@ -121,7 +127,7 @@
 									<td>'.$ctr.'</td>
 									<td>'.$areaid.'</td>
 									<td>'.$name.'</td>
-									<td>'.$areamanager->parent_name.'</td>
+									<td class="text-center">'.$parent.'</td>
 									<td>'.$dt.'</td>
 									<td class="center">'.$type.'</td>
 									<td width="300" class="center" style="font-size:11px">'.$remarks.'</td>
