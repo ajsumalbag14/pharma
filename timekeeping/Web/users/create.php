@@ -103,7 +103,7 @@ include_once "../header.php";
 
 									extract($row_category);
 
-									echo "<option value='$USER_TYPE_ID'> $USER_TYPE</option>";
+									echo "<option value='$USER_TYPE_ID'> $DESCRIPTION</option>";
 								}
 							echo "</select>";
 						?>

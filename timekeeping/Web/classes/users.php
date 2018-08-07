@@ -217,7 +217,7 @@ class Users
 				u.REMARKS,
 				u.PARENT_USER_ID
 			 FROM users u
-			INNER JOIN area a ON a.AREA_ID = u.AREA_ID
+			LEFT JOIN area a ON a.AREA_ID = u.AREA_ID
 			INNER JOIN user_types ut ON ut.USER_TYPE_ID = u.USER_TYPE_ID";
 			
 		
@@ -301,7 +301,8 @@ class Users
     {
         //select all data
         
-		$sql = "select * from $this->table_name u inner join user_types ut on ut.USER_TYPE_ID = u.USER_TYPE_ID where ut.USER_TYPE = 'Area Manager';";
+		$sql = "select * from $this->table_name u inner join user_types ut on ut.USER_TYPE_ID = u.USER_TYPE_ID where ut.USER_TYPE = 'Area Manager'
+		order by u.FIRST_NAME ASC;";
 
         $prep_state = $this->db_conn->prepare($sql);
         $prep_state->execute();
@@ -337,7 +338,7 @@ class Users
 					
 				 FROM users u
 				INNER JOIN user_types ut ON ut.USER_TYPE_ID = u.USER_TYPE_ID
-				WHERE ut.USER_TYPE <> 'Area Manager';";
+				WHERE ut.USER_TYPE <> 'Area Manager' ORDER BY u.FIRST_NAME asc;";
 		
         $prep_state = $this->db_conn->prepare($sql);
 

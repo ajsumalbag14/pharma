@@ -16,7 +16,7 @@ $modules = new Modules($db);
 $result = $modules->getModules($_SESSION["USER_ID"]);
 
 $host = $_SERVER['HTTP_HOST'];
-$parent = '/pharma/prosel_timekeeping';
+$parent = '/pharma/timekeeping';
 $module = '/Web';
 $path = 'http://'.$host.$parent.$module.'/';
 ?>

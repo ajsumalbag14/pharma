@@ -21,7 +21,7 @@ class UserTypes
 
     function getAll()
     {
-		$sql = "SELECT * FROM $this->table_name;";
+		$sql = "SELECT * FROM $this->table_name";
 		
         $prep_state = $this->db_conn->prepare($sql);
 

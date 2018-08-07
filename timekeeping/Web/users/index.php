@@ -21,8 +21,10 @@ $user = new Users($db);
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="col-sm-10"><h3>List of Users</h3></div>
+					
+					<?php if ($_SESSION['USER_TYPE'] == 'Administrator') { ?>
 					<div class="col-sm-2 text-right"><a href="create.php" class="btn btn-success"> <i class="fa fa-plus"></i> Add</a></div>
-
+					<?php } ?>
 					<div class="clearfix"></div>
 				</div>
 
@@ -85,9 +87,15 @@ $user = new Users($db);
 										<td>'.$row['REMARKS'].'</td>
 										<td>'.$under.'</td>
 										<td class="center">
+									';
+
+										if ($_SESSION['USER_TYPE'] == 'Administrator') {
+											echo '
 											<a href="edit.php?userid='.$row['USER_ID'].'" class="btn btn-warning left-margin">
 											<span class="glyphicon glyphicon-edit"></span> Edit
-											</a>
+											</a>';
+										}
+								echo '
 										</td>
 									</tr>
 								';

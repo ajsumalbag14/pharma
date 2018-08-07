@@ -21,7 +21,7 @@ class Area
 
     function getAll()
     {
-		$sql = "SELECT * FROM $this->table_name;";
+		$sql = "SELECT * FROM $this->table_name order by AREA_NAME asc;";
 		
         $prep_state = $this->db_conn->prepare($sql);
 
