@@ -21,11 +21,13 @@ $product = new Products($db);
 		<div class="col-lg-12">
 			<?php
 			// create user button
-			echo "<div class='right-button-margin'>";
-			echo "<a href='create.php' class='btn btn-primary pull-right'>";
-			echo "<span class='glyphicon glyphicon-plus'></span> Create Record";
-			echo "</a>";
-			echo "</div>";
+			if ($_SESSION['USER_TYPE'] == 'Administrator') {
+				echo "<div class='right-button-margin'>";
+				echo "<a href='create.php' class='btn btn-primary pull-right'>";
+				echo "<span class='glyphicon glyphicon-plus'></span> Create Record";
+				echo "</a>";
+				echo "</div>";
+			}
 
 			// select all users
 			$prep_state = $product->getAll($from_record_num, $records_per_page); //Name of the PHP variable to bind to the SQL statement parameter.
@@ -66,15 +68,14 @@ $product = new Products($db);
 					echo "<td>$vstat</td>";
 					//echo "<td>$row[DATE_ADDED]</td>";
 
-					echo "<td>";
-					// edit user button
-					echo "<a href='edit.php?productcode=" . $row['PRODUCT_CODE'] . "' class='btn btn-warning left-margin'>";
-					echo "<span class='glyphicon glyphicon-edit'></span> Edit";
-					echo "</a>";
-
-					
-
-					echo "</td>";
+					if ($_SESSION['USER_TYPE'] == 'Administrator') {
+						echo "<td>";
+						// edit user button
+						echo "<a href='edit.php?productcode=" . $row['PRODUCT_CODE'] . "' class='btn btn-warning left-margin'>";
+						echo "<span class='glyphicon glyphicon-edit'></span> Edit";
+						echo "</a>";
+						echo "</td>";
+					}
 					echo "</tr>";
 				}
 

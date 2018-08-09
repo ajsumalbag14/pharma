@@ -19,8 +19,10 @@ $doctor = new Doctors($db);
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="col-sm-10"><h3>List of Doctors</h3></div>
+					
+					<?php if ($_SESSION['USER_TYPE'] == 'Administrator') { ?>
 					<div class="col-sm-2 text-right"><a href="create.php" class="btn btn-success"> <i class="fa fa-plus"></i> Add</a></div>
-
+					<?php } ?>
 					<div class="clearfix"></div>
 				</div>
 
@@ -77,9 +79,15 @@ $doctor = new Doctors($db);
 										<td>'.$row['FREQUENCY'].'</td>
 										<td>'.$row['UNDER'].'</td>
 										<td class="center">
+										';
+
+										if ($_SESSION['USER_TYPE'] == 'Administrator') {
+											echo '
 											<a href="edit.php?doctorid='.$row['DOCTOR_ID'].'" class="btn btn-warning left-margin">
 											<span class="glyphicon glyphicon-edit"></span> Edit
-											</a>
+											</a>';
+										}
+								echo '
 										</td>
 									</tr>
 								';

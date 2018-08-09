@@ -69,7 +69,7 @@ class AreaManager
 			".$type."
 			".$area_id."
 			".$area_manager." 
-			ORDER BY u.USER_ID, at.ACTIVITY_DATETIME ASC";
+			ORDER BY at.ACTIVITY_DATETIME DESC";
 		} else {
 		// multiple dates
 			$sql = "select u.AREA_ID,u.USER_ID,u.PARENT_USER_ID, u.FIRST_NAME, u.LAST_NAME,
@@ -82,7 +82,7 @@ class AreaManager
 			".$type."
 			".$area_id."
 			".$area_manager."
-			ORDER BY u.USER_ID, at.ACTIVITY_DATETIME ASC";
+			ORDER BY at.ACTIVITY_DATETIME DESC";
 		} 
 
 		//echo $sql;

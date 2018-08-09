@@ -102,7 +102,8 @@
 						// check if more than 0 record found
 						if ($num > 0 ){
 							while ($row = $prep_state->fetch(PDO::FETCH_ASSOC)){
-
+								
+								$areamanager->getUserName($row['PARENT_USER_ID']);
 								$name = $row["FIRST_NAME"] . " " . $row{"LAST_NAME"};
 								if ($areamanager->parent_name != ' ' && $areamanager->parent_name != '') {
 									$parent = $areamanager->parent_name;
@@ -114,8 +115,6 @@
 								$dt = $row["ACTIVITY_DATETIME"];
 								$type = str_replace('API_' ,'', $row['ACTIVITY_TYPE']);
 								$remarks = $row["REMARKS"];
-
-								$areamanager->getUserName($row['PARENT_USER_ID']);
 
 								if ($ctr%2 == 0) {
 									echo '<tr class="even gradeX">';

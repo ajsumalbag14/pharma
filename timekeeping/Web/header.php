@@ -3,7 +3,7 @@ session_start();
 ini_set('display_errors', 1); // see an error when they pop up
 error_reporting(E_ALL); // report all php errors
 
-if($_SESSION["USER_ID"] == null) {
+if(!isset($_SESSION["USER_ID"])) {
 	echo "<script>window.location='../login.php';</script>";
 }
 
