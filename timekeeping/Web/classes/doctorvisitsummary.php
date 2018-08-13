@@ -18,11 +18,12 @@ class DoctorVisit
 	public $remarks;
 
 	public $query_string;
+	private $_userTypes; 	
 	
-	
-    public function __construct($db)
+    public function __construct($db, $_userTypes)
     {
-        $this->db_conn = $db;
+		$this->db_conn = $db;
+		$this->_userTypes = $_userTypes;
     }
 
 	function getDoctorsVisits($request)
@@ -30,7 +31,8 @@ class DoctorVisit
 		$user_que = '';
 		$dt_que = '';
 
-		$user_que = $request['user_type'] == 'Administrator' ? " u.USER_ID <> ".$request['parent_user_id'] : " u.PARENT_USER_ID = ".$request['parent_user_id']; 
+		$user_que = in_array($request['user_type_id'], $this->_userTypes) ? " u.USER_ID <> ".$request['parent_user_id'] : " u.PARENT_USER_ID = ".$request['parent_user_id']; 
+		
 		if (isset($request['startdate']) && isset($request['enddate'])) {
 			$dt_que = " AND date(dv.VISIT_DATETIME) BETWEEN '".$request['startdate']."' AND '".$request['enddate']."' ";
 		}

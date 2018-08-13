@@ -14,6 +14,7 @@ include_once 'classes/database.php';
 include_once 'classes/modules.php';
 include_once 'classes/users.php';
 include_once 'initial.php';
+include_once 'constants.php';
 
 $modules = new Modules($db);
 $result = $modules->getModules($_SESSION["USER_ID"]);

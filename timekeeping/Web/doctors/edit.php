@@ -44,7 +44,8 @@ include_once "../header.php";
 				$doctor->doctorspecialtyid = htmlentities(trim($_POST['doctorspecialtyid']));
 				$doctor->address1 = htmlentities(trim($_POST['address1']));
 				$doctor->address2 = htmlentities(trim($_POST['address2']));
-				$doctor->frequency = $_POST['frequency'];
+				$doctor->frequency = isset($_POST['frequency']) ? $_POST['frequency'] : 0;
+				$doctor->status = $_POST['status'];
 				$doctor->userid = $_POST['userid'];
 
 
@@ -159,6 +160,15 @@ include_once "../header.php";
 						}
 					?></td>
 				</tr>	
+
+				<tr>
+					<td>Status</td>
+					
+					<td><select name='status' class='form-control'>
+							<option value="0"  <?php echo ($doctor->status=='0')?'selected="selected"':'' ?>>Disabled</option>
+							<option value="1" <?php echo ($doctor->status=='1')?'selected="selected"':'' ?>>Active</option>
+						</select></td>
+				</tr>
 
 					<tr>
 						<td></td>

@@ -51,7 +51,7 @@
 				</li>
 				
 				
-				<?php if ($_SESSION['USER_TYPE'] == 'Administrator') { ?>		
+				<?php if (in_array($_SESSION['USER_TYPE_ID'], $_viewAllModules)) { ?>		
 				<li class="<?php echo $areamgmt?>">
 					<a href="<?php echo $path ?>area_management/index.php"><i class="fa fa-cog"></i> <span class="nav-label">Area Management</span></a>
 				</li>

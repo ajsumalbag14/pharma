@@ -29,9 +29,12 @@ class AreaManager
 
 	public $query_string;
 
-    public function __construct($db)
+	private $_userTypes;
+
+    public function __construct($db, $_userTypes)
     {
-        $this->db_conn = $db;
+		$this->db_conn = $db;
+		$this->_userTypes = $_userTypes;
     }
 	
 	function getAttendance($request = [])
@@ -40,7 +43,7 @@ class AreaManager
 		$area_id = '';
 		$area_manager = '';
 
-		$user_que = $request['user_type'] == 'Administrator' ? " u.USER_ID <> ".$request['parent_user_id'] : " u.PARENT_USER_ID = ".$request['parent_user_id']; 
+		$user_que = in_array($request['user_type_id'], $this->_userTypes) ? " u.USER_ID <> ".$request['parent_user_id'] : " u.PARENT_USER_ID = ".$request['parent_user_id']; 
 
 		//filter type
 		if ($request['type'] != 'All') {

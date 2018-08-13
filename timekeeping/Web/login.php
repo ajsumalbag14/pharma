@@ -30,6 +30,7 @@ if(isset($_POST["username"]) && isset($_POST["password"]))
 		$_SESSION["USER_ID"] = $result["USER_ID"];
 		$_SESSION["NAME"] = $result["FIRST_NAME"] . " " . $result["LAST_NAME"];
 		$_SESSION["USER_TYPE"] = $result["USER_TYPE"];
+		$_SESSION["USER_TYPE_ID"] = $result["USER_TYPE_ID"];
 		
 		//redirect to dashboard
 		echo "<script>window.location='index.php';</script>";

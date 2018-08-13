@@ -15,7 +15,8 @@ class Doctors
     public $address1;
 	public $address2;
 	public $frequency;
-	public $userid;
+    public $userid;
+    public $status;
 
     public function __construct($db)
     {
@@ -108,6 +109,7 @@ class Doctors
 			ADDRESS1 = '".$this->address1."',
 			ADDRESS2 = '".$this->address2."',
 			FREQUENCY = $this->frequency,
+            STATUS = $this->status,
 			USER_ID = $this->userid
 			WHERE DOCTOR_ID = $this->doctorid
 		";
@@ -207,7 +209,8 @@ class Doctors
 		$this->address1 = $row['ADDRESS1'];
 		$this->address2 = $row['ADDRESS2'];
 		$this->frequency = $row['FREQUENCY'];
-		$this->userid = $row['USER_ID'];
+        $this->userid = $row['USER_ID'];
+        $this->status = $row['STATUS'];
 		
 		
     }

@@ -52,8 +52,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="col-sm-10"><h3>List of Areas Available</h3></div>
-					<div class="col-sm-2 text-right"><a href="create.php" class="btn btn-success"> <i class="fa fa-plus"></i> Add</a></div>
 
+					<?php if ($_SESSION['USER_TYPE_ID'] == 14) { ?>
+					<div class="col-sm-2 text-right"><a href="create.php" class="btn btn-success"> <i class="fa fa-plus"></i> Add</a></div>
+					<?php } ?>
 					<div class="clearfix"></div>
 				</div>
 
@@ -100,12 +102,15 @@
 									<td>'.$row['AREA_TYPE_ID'].'</td>
 									<td>'.$row['PARENT_AREA_ID'].'</td>
 									<td class="center">'.$status.'</td>
+									
+									';
+
+								if ($_SESSION['USER_TYPE_ID'] != 14) {	
+									echo '<td>';
+								}
+								else {
+									echo '
 									<td width="200">
-									<!--
-										<a href="tag_user.php?area_id='.$row['AREA_ID'].'" class="btn btn-primary left-margin">
-											<span class="glyphicon glyphicon-user"></span> Associate Users
-										</a>
-									-->
 										<a href="edit.php?edit_id='.$row['AREA_ID'].'" class="btn btn-success left-margin">
 											<span class="glyphicon glyphicon-edit"></span> Edit
 										</a>
@@ -121,6 +126,7 @@
 												<span class="glyphicon glyphicon-check"></span> Enable
 											</a>';
 										}
+								}
 									
 									echo '
 									</td>

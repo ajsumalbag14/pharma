@@ -20,7 +20,7 @@ $doctor = new Doctors($db);
 				<div class="panel-heading">
 					<div class="col-sm-10"><h3>List of Doctors</h3></div>
 					
-					<?php if ($_SESSION['USER_TYPE'] == 'Administrator') { ?>
+					<?php if (in_array($_SESSION['USER_TYPE_ID'], $_manageDoctors)) { ?>
 					<div class="col-sm-2 text-right"><a href="create.php" class="btn btn-success"> <i class="fa fa-plus"></i> Add</a></div>
 					<?php } ?>
 					<div class="clearfix"></div>
@@ -47,12 +47,13 @@ $doctor = new Doctors($db);
 								<th>DOCTOR SPECIALTY</th>
 								<th>ADDRESS 1</th>
 								<th>ADDRESS 2</th>
-								<th>FREQUENCY</th>
+								<th>FRQNCY</th>
 								<th>UNDER AM</th>
+								<th>STATUS</th>
 								<th>:</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody style="font-size:11px">
 						<?php 
 						// check if more than 0 record found
 						if ($num > 0 ){
@@ -67,6 +68,8 @@ $doctor = new Doctors($db);
 									echo '<tr class="odd gradeX">';
 								}	
 
+								$status = $row['STATUS'] == 1 ? 'Active' : 'Disabled';
+
 								echo '
 										<td>'.$ctr.'</td>
 										<td>'.$row['DOCTOR_ID'].'</td>
@@ -78,10 +81,11 @@ $doctor = new Doctors($db);
 										<td>'.$row['ADDRESS2'].'</td>
 										<td>'.$row['FREQUENCY'].'</td>
 										<td>'.$row['UNDER'].'</td>
+										<td>'.$status.'</td>
 										<td class="center">
 										';
 
-										if ($_SESSION['USER_TYPE'] == 'Administrator') {
+										if (in_array($_SESSION['USER_TYPE_ID'], $_manageDoctors)) {
 											echo '
 											<a href="edit.php?doctorid='.$row['DOCTOR_ID'].'" class="btn btn-warning left-margin">
 											<span class="glyphicon glyphicon-edit"></span> Edit

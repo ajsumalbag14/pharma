@@ -6,7 +6,7 @@
 	include_once '../classes/doctorvisitsummary.php';
 
 	// instantiate database and user object
-	$visits = new DoctorVisit($db);
+	$visits = new DoctorVisit($db, $_viewAllModules);
 
 	$startdate = isset($_POST['startdate']) ? $_POST['startdate'] : date('Y-m-d', strtotime('previous monday'));
 	$enddate = isset($_POST['enddate']) ? $_POST['enddate'] : date('Y-m-d', strtotime('next monday'));
@@ -45,7 +45,7 @@
 				//if ($datediff >= 0 && $datediff < 8) {
 					// select all users
 					$param = [
-						'user_type'			=> $_SESSION['USER_TYPE'],
+						'user_type_id'			=> $_SESSION['USER_TYPE_ID'],
 						'parent_user_id'	=> $parent_user_id,
 						'startdate'			=> $startdate,
 						'enddate'			=> $enddate,

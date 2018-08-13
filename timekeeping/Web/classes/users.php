@@ -99,13 +99,6 @@ class Users
 			$sql .= " where u.PARENT_USER_ID IN (SELECT USER_ID FROM users 
 					where PARENT_USER_ID = ".$_SESSION["USER_ID"].")";
 		}
-		else if ($_SESSION["USER_TYPE"] == "NSM")
-		{
-			$sql .= " where u.PARENT_USER_ID IN (SELECT USER_ID FROM users 
-					where PARENT_USER_ID IN (SELECT USER_ID FROM users 
-					where PARENT_USER_ID = ".$_SESSION["USER_ID"]."))";
-			
-		}
 
         $prep_state = $this->db_conn->prepare($sql);
         $prep_state->execute();
@@ -179,13 +172,6 @@ class Users
 			$sql .= " where u.PARENT_USER_ID IN (SELECT USER_ID FROM users 
 					where PARENT_USER_ID = ".$_SESSION["USER_ID"].")";
 		}
-		else if ($_SESSION["USER_TYPE"] == "NSM")
-		{
-			$sql .= " where u.PARENT_USER_ID IN (SELECT USER_ID FROM users 
-					where PARENT_USER_ID IN (SELECT USER_ID FROM users 
-					where PARENT_USER_ID = ".$_SESSION["USER_ID"]."))";
-			
-		}
 		
 		$sql .= " ORDER BY u.USERNAME ASC LIMIT $from_record_num, $records_per_page";
 		
@@ -229,13 +215,6 @@ class Users
 		{
 			$sql .= " where u.PARENT_USER_ID IN (SELECT USER_ID FROM users 
 					where PARENT_USER_ID = ".$_SESSION["USER_ID"].")";
-		}
-		else if ($_SESSION["USER_TYPE"] == "NSM")
-		{
-			$sql .= " where u.PARENT_USER_ID IN (SELECT USER_ID FROM users 
-					where PARENT_USER_ID IN (SELECT USER_ID FROM users 
-					where PARENT_USER_ID = ".$_SESSION["USER_ID"]."))";
-			
 		}
 		
 		$sql .= " ORDER BY u.USERNAME ASC";

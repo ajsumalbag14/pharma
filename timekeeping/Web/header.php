@@ -10,6 +10,7 @@ if(!isset($_SESSION["USER_ID"])) {
 // include database and object files
 include_once '../classes/database.php';
 include_once '../classes/modules.php';
+include_once '../constants.php';
 include_once '../initial.php';
 
 $modules = new Modules($db);
@@ -19,6 +20,7 @@ $host = $_SERVER['HTTP_HOST'];
 $parent = '/pharma/timekeeping';
 $module = '/Web';
 $path = 'http://'.$host.$parent.$module.'/';
+
 ?>
 
 <!DOCTYPE html>
