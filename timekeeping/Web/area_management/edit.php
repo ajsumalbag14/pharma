@@ -24,7 +24,7 @@ $area_id = isset($_POST['id']) ? $_POST['id'] : $_GET['edit_id']
 			include_once '../classes/database.php';
 			include_once '../initial.php';
 			// instantiate user object
-			include_once '../classes/_area.php';
+			include_once '../classes/areamanagement.php';
 			$area = new Area($db);
 			$area->getAreaById($area_id);
 			$parent = $area->parent_area_id;

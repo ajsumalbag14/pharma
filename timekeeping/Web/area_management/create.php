@@ -21,7 +21,7 @@ include_once "../header.php";
 			include_once '../classes/database.php';
 			include_once '../initial.php';
 			// instantiate user object
-			include_once '../classes/_area.php';
+			include_once '../classes/areamanagement.php';
 			$area = new Area($db);
 
 			// check if the form is submitted

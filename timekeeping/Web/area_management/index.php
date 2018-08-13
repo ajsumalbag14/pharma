@@ -3,7 +3,7 @@
 	$areamgmt = 'active';
 
 	include_once "../header.php";
-	include_once '../classes/_area.php';
+	include_once '../classes/areamanagement.php';
 
 	// instantiate database and user object
 	$area = new Area($db);
