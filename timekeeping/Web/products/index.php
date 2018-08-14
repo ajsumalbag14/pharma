@@ -19,77 +19,89 @@ $product = new Products($db);
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
 		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="col-sm-10"><h3>List of Users</h3></div>
+					
+					<?php if ($_SESSION['USER_TYPE'] == 'Administrator') { ?>
+					<div class="col-sm-2 text-right"><a href="create.php" class="btn btn-success"> <i class="fa fa-plus"></i> Add</a></div>
+					<?php } ?>
+					<div class="clearfix"></div>
+				</div>
+
 			<?php
-			// create user button
-			if ($_SESSION['USER_TYPE'] == 'Administrator') {
-				echo "<div class='right-button-margin'>";
-				echo "<a href='create.php' class='btn btn-primary pull-right'>";
-				echo "<span class='glyphicon glyphicon-plus'></span> Create Record";
-				echo "</a>";
-				echo "</div>";
-			}
 
 			// select all users
-			$prep_state = $product->getAll($from_record_num, $records_per_page); //Name of the PHP variable to bind to the SQL statement parameter.
+			$prep_state = $product->getAll(); //Name of the PHP variable to bind to the SQL statement parameter.
 			$num = $prep_state->rowCount();
 
-			// check if more than 0 record found
-			if($num>=0){
-
-				echo "<table class='table table-hover table-responsive table-bordered'>";
-				echo "<tr>";
-				echo "<th>Product Code</th>";
-				echo "<th>Description</th>";
-				echo "<th>Size</th>";
-				echo "<th>Generic Name or Packing Shade</th>";
-				echo "<th>Quantity</th>";
-				echo "<th>Status</th>";
-				//echo "<th>Date Added</th>";
-				echo "</tr>";
-
-				while ($row = $prep_state->fetch(PDO::FETCH_ASSOC)){
-
-					extract($row); //Import variables into the current symbol table from an array
-
-					echo "<tr>";
-
-					echo "<td>$row[PRODUCT_CODE]</td>";
-					echo "<td>$row[PRODUCT_DESCRIPTION]</td>";
-					echo "<td>$row[SIZE]</td>";
-					echo "<td>$row[GENERIC_NAME_OR_PACKING_SHADE]</td>";
-					echo "<td>$row[QUANTITY]</td>";
-					
-					$vstat = "";
-					if($row["STATUS"] == "0")
-						$vstat = "Disabled";
-					else if($row["STATUS"] == "1")
-						$vstat = "Enabled";
-					
-					echo "<td>$vstat</td>";
-					//echo "<td>$row[DATE_ADDED]</td>";
-
-					if ($_SESSION['USER_TYPE'] == 'Administrator') {
-						echo "<td>";
-						// edit user button
-						echo "<a href='edit.php?productcode=" . $row['PRODUCT_CODE'] . "' class='btn btn-warning left-margin'>";
-						echo "<span class='glyphicon glyphicon-edit'></span> Edit";
-						echo "</a>";
-						echo "</td>";
-					}
-					echo "</tr>";
-				}
-
-				echo "</table>";
-
-				// include pagination file
-				include_once 'pagination.php';
-			}
-
-			// if there are no user
-			else{
-				echo "<div> No User found. </div>";
-				}
 			?>
+				<div class="panel-body">
+					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>PRODUCT CODE</th>
+								<th>DESCRIPTION</th>
+								<th>SIZE</th>
+								<th>GENERIC NAME / PACKING SHADE</th>
+								<th>QUANTITY</th>
+								<th>STATUS</th>
+							</tr>
+						</thead>
+					<tbody>
+
+					<?php 
+					// check if more than 0 record found
+					if($num >= 0){
+						$ctr = 1;
+						while ($row = $prep_state->fetch(PDO::FETCH_ASSOC)){
+
+							extract($row); //Import variables into the current symbol table from an array
+
+							if ($ctr%2 == 0) {
+								echo '<tr class="even gradeX">';
+							} else {
+								echo '<tr class="odd gradeX">';
+							}	
+
+							echo "<td>$row[PRODUCT_CODE]</td>";
+							echo "<td>$row[PRODUCT_DESCRIPTION]</td>";
+							echo "<td>$row[SIZE]</td>";
+							echo "<td>$row[GENERIC_NAME_OR_PACKING_SHADE]</td>";
+							echo "<td>$row[QUANTITY]</td>";
+							
+							$vstat = "";
+							if($row["STATUS"] == "0")
+								$vstat = "Disabled";
+							else if($row["STATUS"] == "1")
+								$vstat = "Enabled";
+							
+							echo "<td>$vstat</td>";
+							//echo "<td>$row[DATE_ADDED]</td>";
+
+							if ($_SESSION['USER_TYPE'] == 'Administrator') {
+								echo "<td>";
+								// edit user button
+								echo "<a href='edit.php?productcode=" . $row['PRODUCT_CODE'] . "' class='btn btn-warning left-margin'>";
+								echo "<span class='glyphicon glyphicon-edit'></span> Edit";
+								echo "</a>";
+								echo "</td>";
+							}
+							echo "</tr>";
+
+							$ctr ++;
+						}
+					}
+
+					// if there are no user
+					else{
+						echo "<div> No User found. </div>";
+						}
+					?>
+					</tbody>
+				</div> <!-- .panel-body -->
+			</div> <!-- .panel -->
 		</div>
 	</div>	
 </div>
