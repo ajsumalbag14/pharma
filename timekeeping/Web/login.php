@@ -4,6 +4,7 @@ session_start();
 include_once 'classes/database.php';
 include_once 'classes/users.php';
 include_once 'initial.php';
+include_once 'constants.php';
 
 if(!isset($message))
 	$message = "";
@@ -20,6 +21,8 @@ if(isset($_POST["username"]) && isset($_POST["password"]))
 	$user = new Users($db);
 	$user->username = htmlentities(trim($_POST["username"]));
 	$user->password = htmlentities(trim($_POST["password"]));
+	$user->_sp = $_sp;
+	$user->_spUsers = $_spUsers;
 
 	// select all users
 	$result = $user->login();

