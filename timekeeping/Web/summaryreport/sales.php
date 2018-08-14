@@ -1,12 +1,16 @@
 <?php
-	$page_title = 'Doctor Visit Summary';
-	$summary = 'active';
+	$page_title = 'Sales Order Summary';
+	$sales = 'active';
 
 	include_once "../header.php";
-	include_once '../classes/doctorvisitsummary.php';
+	include_once '../classes/salessummary.php';
+	include_once '../classes/users.php';
+	include_once '../classes/doctors.php';
 
 	// instantiate database and user object
-	$visits = new DoctorVisit($db, $_viewAllModules);
+	$purchase = new DoctorPurchase($db, $_viewAllModules);
+	$user = new Users($db);
+	$doctor = new Doctors($db);
 
 	$startdate = isset($_POST['startdate']) ? $_POST['startdate'] : date('Y-m-d', strtotime('previous monday'));
 	$enddate = isset($_POST['enddate']) ? $_POST['enddate'] : date('Y-m-d', strtotime('next monday'));
@@ -18,7 +22,7 @@
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3>Visits</h3>
+					<h3>Sales</h3>
 					<form name="summaryreport" method="post" action="?">
 						<div class='col-sm-12'> 
 
@@ -38,27 +42,21 @@
 
 				<?php
 
-				$datediff = $visits->getDateDiff($startdate, $enddate);
+				$datediff = $purchase->getDateDiff($startdate, $enddate);
 				$parent_user_id = $_SESSION['USER_ID'];
 				
-				//filter by 7 days result only
-				//if ($datediff >= 0 && $datediff < 8) {
 					// select all users
 					$param = [
-						'user_type_id'			=> $_SESSION['USER_TYPE_ID'],
+						'user_type_id'		=> $_SESSION['USER_TYPE_ID'],
 						'parent_user_id'	=> $parent_user_id,
 						'startdate'			=> $startdate,
 						'enddate'			=> $enddate,
 						'datediff'			=> $datediff
 					];
 
-					$prep_state = $visits->getDoctorsVisits($param); //Name of the PHP variable to bind to the SQL statement parameter.
+					$prep_state = $purchase->getDoctorsPurchase($param); //Name of the PHP variable to bind to the SQL statement parameter.
 					$num = $prep_state->rowCount();
 					$ctr = 1;
-				//} else {
-				//	$num = 0;
-				//	$date_err = 1;
-				//}
 
 				?>
 
@@ -68,10 +66,13 @@
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>DOCTOR VISIT ID</th>
-								<th>AREA MANAGER</th>
+								<th>VISIT</th>
+								<th>AM</th>
 								<th>DOCTOR</th>
-								<th>DATE &amp; TIME</th>
+								<th>PRODUCT</th>
+								<th>QTY</th>
+								<th>UNIT</th>
+								<th>TOTAL</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -86,12 +87,18 @@
 									echo '<tr class="odd gradeX">';
 								}	
 
+								$username = $user->getUserName($row['USER_ID']) != '' ? $user->getUserName($row['USER_ID']) : '---';
+								$doctorname = $doctor->getName($row['DOCTOR_ID']) != '' ? $doctor->getName($row['DOCTOR_ID']) : '---';
+
 								echo '
 										<td>'.$ctr.'</td>
-										<td>'.$row['DOCTOR_VISIT_ID'].'</td>
-										<td>'.$row['USER'].'</td>
-										<td>'.$row['DOCTOR'].'</td>
 										<td>'.$row['VISIT_DATETIME'].'</td>
+										<td>'.$username.'</td>
+										<td>'.$doctorname.'</td>
+										<td>'.$row['PRODUCT_CODE'].'</td>
+										<td>'.$row['QTY_REGULAR'].'</td>
+										<td>'.number_format($row['PRICE'] , 2).'</td>
+										<td>'.number_format($row['NET_PRICE'], 2).'</td>
 									</tr>
 								';
 
@@ -123,9 +130,9 @@
 					echo '
 						<form action="../export/index.php" method="post">
 							<input type="hidden" name="module" value="'.$page_title.'">
-							<input type="hidden" name="rpt" value="2">
+							<input type="hidden" name="rpt" value="3">
 							<textarea name="query" cols="30" rows="10" style="display:none">
-								'.$visits->query_string.'
+								'.$purchase->query_string.'
 							</textarea>
 							<input type="submit" class="btn btn-primary" value="Export to Excel">
 						</form>';

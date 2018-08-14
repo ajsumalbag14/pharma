@@ -215,6 +215,22 @@ class Doctors
 		
     }
 
+    function getName($id) {
+		 $sql = "SELECT 
+					FIRST_NAME,
+					LAST_NAME
+		 FROM " . $this->table_name . " WHERE DOCTOR_ID = $id";
+
+        $prep_state = $this->db_conn->prepare($sql);
+        $prep_state->execute();
+
+        $row = $prep_state->fetch(PDO::FETCH_ASSOC);
+
+        $name = $row['FIRST_NAME'].' '.$row['LAST_NAME'];
+        
+        return $name;
+	}
+
 
 }
 

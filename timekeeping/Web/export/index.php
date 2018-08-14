@@ -15,7 +15,10 @@ if (isset($_POST['query'])) {
         $columnHeader = "AREA ID"."\t"."AM ID"."\t"."UNDER TO"."\t"."FIRST NAME"."\t"."LAST NAME"."\t"."DATE"."\t"."DATETIME"."\t"."TYPE"."\t"."REMARKS"."\t";
         break;
     case 2:
-        $columnHeader = "DOCTOR_VISIT_ID"."\t"."USER"."\t"."DOCTOR"."\t"."VISIT_DATETIME"."\t"."TOTAL PURCHASED";
+        $columnHeader = "DOCTOR_VISIT_ID"."\t"."USER"."\t"."DOCTOR"."\t"."VISIT_DATETIME";
+        break;
+    case 3:
+        $columnHeader = "VISIT"."\t"."AM ID"."\t"."DOCTOR ID"."\t"."PRODUCT_CODE"."\t"."QTY"."\t"."UNIT"."\t"."TOTAL";
         break;
     }
     

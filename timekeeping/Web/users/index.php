@@ -27,7 +27,7 @@ $user = new Users($db);
 					<?php } ?>
 					<div class="clearfix"></div>
 				</div>
-
+				<!-- /.panel-heading -->			
 				<?php
 
 				// select all users
@@ -36,7 +36,6 @@ $user = new Users($db);
 
 				?>
 
-				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
 						<thead>

@@ -249,6 +249,21 @@ class Users
 		
 	}
 
+	function getUserName($userid) {
+		 $sql = "SELECT 
+					USERNAME
+		 FROM " . $this->table_name . " WHERE USER_ID = $userid";
+
+        $prep_state = $this->db_conn->prepare($sql);
+        $prep_state->execute();
+
+        $row = $prep_state->fetch(PDO::FETCH_ASSOC);
+
+		$name = $row['USERNAME'];
+
+		return $name;		
+	}
+
     // for edit user form when filling up
     function getRecord()
     {
