@@ -43,7 +43,7 @@
 				</li>
 
 				<li class="<?php echo $summaryam?>">
-					<a href="<?php echo $path ?>summaryreport/index.php"><i class="fa fa-list"></i> <span class="nav-label">AM Attendance Report</span></a>
+					<a href="<?php echo $path ?>summaryreport/index.php"><i class="fa fa-list"></i> <span class="nav-label">Attendance Summary</span></a>
 				</li>
 
 				<li class="<?php echo $summary?>">
@@ -57,7 +57,7 @@
 				
 				<?php if (in_array($_SESSION['USER_TYPE_ID'], $_viewAllModules)) { ?>		
 				<li class="<?php echo $areamgmt?>">
-					<a href="<?php echo $path ?>area_management/index.php"><i class="fa fa-cog"></i> <span class="nav-label">Area Management</span></a>
+					<a href="<?php echo $path ?>area_management/index.php"><i class="fa fa-cog"></i> <span class="nav-label">Area ID Management</span></a>
 				</li>
 				<?php } ?>
 			

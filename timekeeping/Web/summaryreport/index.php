@@ -1,5 +1,5 @@
 <?php
-	$page_title = 'Area Manager Attendance Report';
+	$page_title = 'Attendance Summary';
 	$summaryam = 'active';
 
 	include_once "../header.php";
@@ -90,7 +90,7 @@
 							<tr>
 								<th>#</th>
 								<th>AREA ID</th>
-								<th>AREA MANAGER</th>
+								<th>NAME OF MANAGER</th>
 								<th class="text-center">UNDER</th>
 								<th>DATE TIME</th>
 								<th>TYPE</th>

@@ -1,5 +1,5 @@
 <?php
-	$page_title = 'Area Management';
+	$page_title = 'Area ID Management';
 	$areamgmt = 'active';
 
 	include_once "../header.php";
