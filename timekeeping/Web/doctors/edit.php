@@ -165,7 +165,7 @@ include_once "../header.php";
 					<td>Status</td>
 					
 					<td><select name='status' class='form-control'>
-							<option value="0"  <?php echo ($doctor->status=='0')?'selected="selected"':'' ?>>Disabled</option>
+							<option value="0"  <?php echo ($doctor->status=='0')?'selected="selected"':'' ?>>Inactive</option>
 							<option value="1" <?php echo ($doctor->status=='1')?'selected="selected"':'' ?>>Active</option>
 						</select></td>
 				</tr>

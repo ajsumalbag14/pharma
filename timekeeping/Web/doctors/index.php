@@ -68,7 +68,7 @@ $doctor = new Doctors($db);
 									echo '<tr class="odd gradeX">';
 								}	
 
-								$status = $row['STATUS'] == 1 ? 'Active' : 'Disabled';
+								$status = $row['STATUS'] == 1 ? 'Active' : 'Inactive';
 
 								echo '
 										<td>'.$ctr.'</td>
