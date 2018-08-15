@@ -43,8 +43,21 @@ class AreaManager
 		$area_id = '';
 		$area_manager = '';
 
-		$user_que = in_array($request['user_type_id'], $this->_userTypes) ? " u.USER_ID <> ".$request['parent_user_id'] : " u.PARENT_USER_ID = ".$request['parent_user_id']; 
+		if (in_array($request['user_type_id'], $this->_userTypes)) {
+			$user_que = " u.USER_ID <> ".$request['parent_user_id'];
+		} else {
+			if($_SESSION["USER_TYPE"] == "DSM")
+			{
+				$user_que = " u.PARENT_USER_ID = ".$_SESSION["USER_ID"];
+			}
+			else if ($_SESSION["USER_TYPE"] == "RSM")
+			{
+				$user_que = " u.PARENT_USER_ID IN (SELECT USER_ID FROM users 
+						where PARENT_USER_ID = ".$_SESSION["USER_ID"].")";
+			}
 
+			//$user_que = " u.PARENT_USER_ID = ".$request['parent_user_id']; 
+		}
 		//filter type
 		if ($request['type'] != 'All') {
 			$type = " AND at.ACTIVITY_TYPE = '".$request['type']."'";
