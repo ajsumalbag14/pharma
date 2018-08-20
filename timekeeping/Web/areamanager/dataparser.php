@@ -5,9 +5,10 @@ include_once '../classes/areamanager.php';
 include_once '../classes/doctorvisit.php';
 include_once '../classes/doctorpurchase.php';
 include_once '../initial.php';
+include_once '../constants.php';
 
 // instantiate user object
-$areamanager = new AreaManager($db);
+$areamanager = new AreaManager($db, $_viewAllModules);
 $doctorvisit = new DoctorVisit($db);
 $doctorpurchase = new DoctorPurchase($db);
 

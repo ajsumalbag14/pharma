@@ -4,7 +4,9 @@ $visit = 'active';
 
 include_once "../header.php";
 include_once '../classes/doctorvisit.php';
+include_once '../classes/areamanager.php';
 
+$areamanager = new AreaManager($db, $_viewAllModules);
 ?>
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
@@ -15,11 +17,8 @@ include_once '../classes/doctorvisit.php';
 				Select an Area Manager to View: 
 				
 				<?php
-					// choose user categories
-					include_once '../classes/users.php';
-
-					$user = new Users($db);
-					$prep_state = $user->getAllAM();
+					
+					$prep_state = $areamanager->getListOfAm();
 					echo "<select name='userid'>";
 
 						echo "<option>--- Select Category ---</option>";
@@ -66,11 +65,10 @@ include_once '../classes/doctorvisit.php';
 
 					echo "<table class='table table-hover table-responsive table-bordered'>";
 					echo "<tr>";
-					echo "<th>Doctor Visit Id</th>";
+					echo "<th>Doctor Visit ID</th>";
 					echo "<th>Area Manager</th>";
 					echo "<th>Doctor</th>";
 					echo "<th>Visit Date Time</th>";
-					echo "<th>Total Amount Purchased</th>";
 					echo "<th>&nbsp; </th>";
 					
 					echo "</tr>";
@@ -85,7 +83,6 @@ include_once '../classes/doctorvisit.php';
 						echo "<td>$row[USER]</td>";
 						echo "<td>$row[DOCTOR]</td>";
 						echo "<td>$row[VISIT_DATETIME]</td>";
-						echo "<td>$row[TOTAL]</td>";
 
 						echo "<td>";
 						// edit user button

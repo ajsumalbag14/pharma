@@ -9,7 +9,7 @@ include_once "../header.php";
 // for pagination purposes
 $page = isset($_GET['page']) ? $_GET['page'] : 1; // page is the current page, if there's nothing set, default is page 1
 // instantiate database and user object
-$areamanager = new AreaManager($db);
+$areamanager = new AreaManager($db, $_viewAllModules);
 ?>
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
@@ -22,13 +22,13 @@ $areamanager = new AreaManager($db);
 				<?php
 
 				// select all users
-				$prep_state = $areamanager->getAllAM(); //Name of the PHP variable to bind to the SQL statement parameter.
+				$prep_state = $areamanager->getListOfAm(); //Name of the PHP variable to bind to the SQL statement parameter.
 				$num = $prep_state->rowCount();
 
 				?>
 
 				<!-- /.panel-heading -->
-				<div class="panel-body">
+				<div class="panel-body" style="font-size:11px">
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
 						<thead>
 							<tr>
@@ -70,7 +70,7 @@ $areamanager = new AreaManager($db);
 										<td>'.$row['USERNAME'].'</td>
 										<td>'.$row['STATUS'].'</td>
 										<td>'.$row['REMARKS'].'</td>
-										<td>'.$row['USER_ID'].'</td>
+										<td>'.$areamanager->getUserName($row['PARENT_USER_ID']).'</td>
 										<td width="300" class="center">
 											<a href="amactivity.php?userid='.$row['USER_ID'].'&name='.$name.'" class="btn btn-info left-margin">
 												<span class="glyphicon glyphicon-edit"></span> View AM Activity

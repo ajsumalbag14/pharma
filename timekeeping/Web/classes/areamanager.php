@@ -26,9 +26,12 @@ class AreaManager
 	public $locationlat;
 	public $locationlong;
 
-    public function __construct($db)
+	private $_userTypes;
+
+    public function __construct($db, $_userTypes)
     {
         $this->db_conn = $db;
+		$this->_userTypes = $_userTypes;
     }
 
 	
@@ -66,7 +69,7 @@ class AreaManager
 	function getAllAM()
     {
 		//$sql = "SELECT * FROM $this->table_name ORDER BY FIRST_NAME ASC LIMIT ?, ?";
-		$sql = "select * from $this->table_name u inner join user_types ut on ut.USER_TYPE_ID = u.USER_TYPE_ID where ut.USER_TYPE = 'Area Manager';";
+		$sql = "select * from $this->table_name where USER_TYPE_ID = 12;";
 		
 		//echo $sql;
 		
@@ -76,7 +79,50 @@ class AreaManager
 
         return $prep_state;
         $db_conn = NULL;
-    }
+	}
+	
+	function getListOfAm()
+    {
+		
+		if (in_array($_SESSION['USER_TYPE_ID'], $this->_userTypes)) {
+			$user_que = " AND USER_ID <> ".$_SESSION["USER_ID"];
+		} else {
+			if($_SESSION["USER_TYPE"] == "DSM")
+			{
+				$user_que = " AND PARENT_USER_ID = ".$_SESSION["USER_ID"];
+			}
+			else if ($_SESSION["USER_TYPE"] == "RSM")
+			{
+				$user_que = " AND PARENT_USER_ID IN (SELECT USER_ID FROM users 
+						where PARENT_USER_ID = ".$_SESSION["USER_ID"].")";
+			}
+		}
+
+		$sql = "select * from $this->table_name where USER_TYPE_ID = 12 ".$user_que. " order by FIRST_NAME asc";
+		
+		//echo $sql;
+		
+        $prep_state = $this->db_conn->prepare($sql);
+
+        $prep_state->execute();
+
+        return $prep_state;
+        $db_conn = NULL;
+	}
+	
+	function getUserName($id) {
+		$sql = "SELECT 
+					FIRST_NAME,
+					LAST_NAME
+		 FROM " . $this->table_name . " WHERE USER_ID = $id";
+
+        $prep_state = $this->db_conn->prepare($sql);
+        $prep_state->execute();
+
+        $row = $prep_state->fetch(PDO::FETCH_ASSOC);
+
+        return  $row['FIRST_NAME'].' '.$row['LAST_NAME'];
+	}
 	
 	function getAMActivity() {
 		
@@ -119,11 +165,11 @@ class AreaManager
 		
 		if($startdate <> '' && $enddate <> '')	
 		{
-			$sql .= " AND ACTIVITY_DATETIME BETWEEN '$startdate' AND '$enddate 23:59:59'";
+			$sql .= " AND ACTIVITY_DATETIME BETWEEN '$startdate' AND '$enddate'";
 			
 		}
 		
-		$sql .= " ORDER BY AM.ACTIVITY_DATETIME ASC;";
+		$sql .= " ORDER BY am.ACTIVITY_DATETIME ASC;";
 		
 		//echo $sql;
 		

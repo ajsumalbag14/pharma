@@ -9,7 +9,7 @@ include_once "../header.php";
 $userid = isset($_GET['userid']) ? $_GET['userid'] : die('ERROR! ID not found!');
 
 // instantiate database and user object
-$areamanager = new AreaManager($db);
+$areamanager = new AreaManager($db, $_viewAllModules);
 $areamanager->userid = $userid;
 // include header file
 

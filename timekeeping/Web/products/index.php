@@ -21,7 +21,7 @@ $product = new Products($db);
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<div class="col-sm-10"><h3>List of Users</h3></div>
+					<div class="col-sm-10"><h3>List of Products</h3></div>
 					
 					<?php if ($_SESSION['USER_TYPE'] == 'Administrator') { ?>
 					<div class="col-sm-2 text-right"><a href="create.php" class="btn btn-success"> <i class="fa fa-plus"></i> Add</a></div>

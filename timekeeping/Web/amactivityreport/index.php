@@ -4,7 +4,7 @@ $activity = 'active';
 
 include_once "../header.php";
 include_once '../classes/areamanager.php';
-
+$areamanager = new AreaManager($db, $_viewAllModules);
 ?>
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
@@ -15,11 +15,7 @@ include_once '../classes/areamanager.php';
 				Select an Area Manager to View: 
 				
 				<?php
-					// choose user categories
-					include_once '../classes/users.php';
-
-					$user = new Users($db);
-					$prep_state = $user->getAllAM();
+					$prep_state = $areamanager->getListOfAm();
 					echo "<select name='userid'>";
 
 						echo "<option>--- Select Category ---</option>";
@@ -53,7 +49,7 @@ include_once '../classes/areamanager.php';
 				
 				
 				// instantiate database and user object
-				$areamanager = new AreaManager($db);
+				
 				$areamanager->userid = $_POST["userid"];
 				// include header file
 				
